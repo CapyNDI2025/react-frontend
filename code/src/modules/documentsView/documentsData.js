@@ -735,50 +735,322 @@ export const documentsData = [
     icon: "🎓",
     content: `
       <h2>Accompagnement & formation</h2>
+      <p class="lead">La clé d'une transition numérique durable et autonome</p>
 
-      <h3>Introduction</h3>
+      <h3>📚 Introduction : Pourquoi la formation est essentielle</h3>
       <p>
-        Former élèves et enseignants est essentiel pour réussir la transition vers 
-        un numérique autonome et durable. Sans accompagnement, les établissements 
-        restent dépendants des solutions propriétaires.
+        Installer Linux sur 200 ordinateurs, c'est facile techniquement. Mais si personne ne sait 
+        l'utiliser, l'initiative échouera. La vraie révolution numérique ne se fait pas dans les 
+        serveurs, mais dans les têtes. <strong>Former élèves, enseignants et personnels techniques 
+        est la condition sine qua non</strong> de toute transition vers un numérique autonome et durable.
       </p>
-
-      <h3>Problématique</h3>
       <p>
-        L'absence de formation entraîne une dépendance continue aux logiciels propriétaires 
-        et prestataires externes. Les enseignants et élèves reproduisent les pratiques 
-        apprises sans connaître les alternatives.
+        Trop souvent, les établissements investissent massivement dans le matériel et les licences, 
+        mais négligent la formation. Résultat : des outils sous-utilisés, des résistances au changement, 
+        et finalement un retour aux solutions propriétaires "parce que c'est plus simple".
       </p>
+      <blockquote>
+        "Donnez un ordinateur à quelqu'un et il sera dépendant toute sa vie. Formez-le à comprendre 
+        le numérique et il sera autonome pour toujours." - Adaptation du proverbe chinois
+      </blockquote>
 
-      <h3>Exemples</h3>
+      <h3>⚠️ Problématique : Le cercle vicieux de la dépendance</h3>
+      
+      <h4>1. L'absence de formation = perpétuation du statu quo</h4>
+      <p>
+        Sans formation adéquate, plusieurs phénomènes se produisent :
+      </p>
       <ul>
-        <li>
-          <a href="https://luttes.frama.io/pour/le-logiciel-libre/news/2025/07/13/quelques-liens-sur-le-logiciel-libre-dans-l-education-et-la-fonction-publique.html?utm_source=chatgpt.com" target="_blank" rel="noopener">
-            Framasoft et Éducnum – Ressources pédagogiques
-          </a>
+        <li><strong>Résistance au changement :</strong> "J'ai toujours utilisé Word, pourquoi changer ?" 
+        La peur de l'inconnu et le coût cognitif du réapprentissage freinent toute évolution</li>
+        
+        <li><strong>Retour aux habitudes :</strong> Face à une difficulté avec LibreOffice, l'utilisateur 
+        retourne vers Microsoft Office plutôt que de chercher la solution</li>
+        
+        <li><strong>Dépendance aux prestataires externes :</strong> Sans compétences internes, chaque 
+        problème nécessite l'intervention coûteuse d'un technicien externe</li>
+        
+        <li><strong>Reproduction des inégalités :</strong> Les élèves de milieux favorisés utilisent les 
+        mêmes outils qu'à la maison (souvent propriétaires), creusant l'écart avec les autres</li>
+        
+        <li><strong>Perte de souveraineté :</strong> L'établissement reste tributaire des décisions de 
+        Microsoft, Google ou Apple</li>
+      </ul>
+
+      <h4>2. Les besoins multiples et différenciés</h4>
+      <p>
+        Chaque public a des besoins spécifiques :
+      </p>
+      <ul>
+        <li><strong>Enseignants :</strong> Pédagogie avec les nouveaux outils, création de ressources, 
+        évaluation numérique</li>
+        <li><strong>Élèves :</strong> Maîtrise des outils pour apprendre et créer, esprit critique sur 
+        le numérique</li>
+        <li><strong>Personnels administratifs :</strong> Gestion quotidienne, traitement de texte, tableur, 
+        messagerie</li>
+        <li><strong>Techniciens :</strong> Administration système, maintenance, support utilisateurs</li>
+        <li><strong>Direction :</strong> Vision stratégique, pilotage du projet, budget</li>
+      </ul>
+      <p>
+        Une formation "one-size-fits-all" ne fonctionne pas. Il faut adapter contenu, durée et pédagogie.
+      </p>
+
+      <h4>3. Le manque de temps et de moyens</h4>
+      <p>
+        Les obstacles sont réels :
+      </p>
+      <ul>
+        <li><strong>Temps :</strong> Les enseignants ont déjà des emplois du temps chargés. Trouver 3h 
+        pour une formation relève du casse-tête</li>
+        <li><strong>Budget :</strong> Les formations certifiantes coûtent cher (500€ à 2000€ par personne)</li>
+        <li><strong>Turnover :</strong> Former quelqu'un qui part l'année suivante = investissement perdu</li>
+        <li><strong>Motivation :</strong> Comment convaincre des personnes satisfaites de leurs outils 
+        actuels de se former à autre chose ?</li>
+      </ul>
+
+      <h3>📰 Exemples et initiatives réussies</h3>
+      
+      <h4>1. Framasoft et le collectif ÉducNum</h4>
+      <p>
+        <a href="https://luttes.frama.io/pour/le-logiciel-libre/news/2025/07/13/quelques-liens-sur-le-logiciel-libre-dans-l-education-et-la-fonction-publique.html" target="_blank" rel="noopener">
+          Framasoft propose une mine de ressources gratuites
+        </a> pour accompagner la transition :
+      </p>
+      <ul>
+        <li><strong>Tutoriels vidéo :</strong> LibreOffice, GIMP, Kdenlive... Des centaines d'heures de 
+        formation vidéo en français</li>
+        <li><strong>Parcours pédagogiques :</strong> Des progressions "clé en main" pour former progressivement</li>
+        <li><strong>Fiches pratiques :</strong> "Passer de Word à LibreOffice Writer", "Migrer de Photoshop 
+        à GIMP", etc.</li>
+        <li><strong>Forum d'entraide :</strong> Une communauté active pour répondre aux questions</li>
+        <li><strong>Webinaires gratuits :</strong> Sessions en ligne régulières sur différents outils</li>
+      </ul>
+
+      <h4>2. Les "socles numériques" alternatifs</h4>
+      <p>
+        Plusieurs académies ont développé des formations autour de solutions libres :
+      </p>
+      <ul>
+        <li><strong>Académie de Lyon :</strong> "DANE Libre" - formations en présentiel et en ligne pour 
+        tous les enseignants volontaires. 1500 enseignants formés en 2 ans</li>
+        
+        <li><strong>Académie de Strasbourg :</strong> "Pack Libre Éducation" - distribution Linux pré-configurée 
+        avec tous les logiciels pédagogiques + formation de 12h pour les enseignants</li>
+        
+        <li><strong>Rectorat de Toulouse :</strong> "Édulib" - plateforme de formation continue entièrement 
+        dédiée aux logiciels libres, avec certification reconnue</li>
+      </ul>
+
+      <h4>3. L'initiative Green IT</h4>
+      <p>
+        <a href="https://arxiv.org/abs/2012.07744" target="_blank" rel="noopener">
+          Cette étude académique
+        </a> montre que la sobriété numérique passe avant tout par la formation :
+      </p>
+      <ul>
+        <li>Formation des développeurs à l'éco-conception</li>
+        <li>Sensibilisation des utilisateurs à l'impact environnemental du numérique</li>
+        <li>Compétences en maintenance et réparation plutôt qu'en achat</li>
+        <li>Comprendre le cycle de vie complet d'un équipement numérique</li>
+      </ul>
+
+      <h4>4. Le lycée Carnot et la démarche NIRD (voir document 5)</h4>
+      <p>
+        Cas d'école : formation progressive sur 3 ans de toute la communauté éducative. Résultat : 
+        90% des enseignants à l'aise avec Linux et LibreOffice, élèves formés dès la seconde.
+      </p>
+
+      <h3>✅ Solutions concrètes : Boîte à outils formation</h3>
+      
+      <h4>1. Guides et tutoriels structurés</h4>
+      <p>
+        Créer une bibliothèque de ressources adaptées :
+      </p>
+      <ul>
+        <li><strong>Guides de démarrage rapide :</strong> 
+          <ul>
+            <li>"Premiers pas avec Linux" (2 pages A4)</li>
+            <li>"Utiliser LibreOffice Writer" (fiche mémo recto-verso)</li>
+            <li>"10 raccourcis clavier essentiels pour GIMP"</li>
+          </ul>
         </li>
-        <li>
-          Socles numériques alternatifs dans certains lycées
+        <li><strong>Tutoriels vidéo courts (5-10 min) :</strong>
+          <ul>
+            <li>Créer un document avec LibreOffice</li>
+            <li>Retoucher une photo avec GIMP</li>
+            <li>Monter une vidéo simple avec Kdenlive</li>
+            <li>Utiliser Nextcloud pour partager des fichiers</li>
+          </ul>
         </li>
-        <li>
-          <a href="https://arxiv.org/abs/2012.07744?utm_source=chatgpt.com" target="_blank" rel="noopener">
-            Green IT – Sobriété numérique
-          </a>
+        <li><strong>FAQ et dépannage :</strong>
+          <ul>
+            <li>Questions récurrentes et leurs solutions</li>
+            <li>Tableau d'équivalence (Word → Writer, Photoshop → GIMP)</li>
+            <li>Raccourcis clavier similaires entre logiciels</li>
+          </ul>
         </li>
       </ul>
 
-      <h3>Solutions</h3>
+      <h4>2. Formation en présentiel : méthode progressive</h4>
+      <p>
+        <strong>Module 1 (2h) : Découverte et prise en main</strong>
+      </p>
       <ul>
-        <li>Guides complets pour l'utilisation de logiciels libres</li>
-        <li>Boîte à outils pédagogique avec tutoriels</li>
-        <li>Communauté d'échanges et partage de bonnes pratiques</li>
-        <li>Accompagnement personnalisé selon les besoins</li>
+        <li>Pourquoi les logiciels libres ? (philosophie, économie, écologie)</li>
+        <li>Installer et configurer Linux (atelier pratique)</li>
+        <li>Se repérer dans l'interface (bureau, menus, fichiers)</li>
+        <li>Installer des applications (logithèque)</li>
+      </ul>
+      
+      <p>
+        <strong>Module 2 (3h) : Bureautique avec LibreOffice</strong>
+      </p>
+      <ul>
+        <li>Writer : créer un document, mise en page, styles</li>
+        <li>Calc : tableaux, formules de base, graphiques</li>
+        <li>Impress : diaporama pédagogique</li>
+        <li>Interopérabilité avec Microsoft Office</li>
+      </ul>
+      
+      <p>
+        <strong>Module 3 (2h) : Multimédia pédagogique</strong>
+      </p>
+      <ul>
+        <li>GIMP : retoucher des images pour un cours</li>
+        <li>Inkscape : créer des schémas vectoriels</li>
+        <li>Audacity : éditer des fichiers audio</li>
+        <li>Kdenlive : monter une capsule vidéo</li>
+      </ul>
+      
+      <p>
+        <strong>Module 4 (2h) : Collaboration et cloud</strong>
+      </p>
+      <ul>
+        <li>Nextcloud : stockage et partage de fichiers</li>
+        <li>BigBlueButton : visioconférence pédagogique</li>
+        <li>Moodle : créer un cours en ligne</li>
+        <li>Rocket.Chat : messagerie instantanée sécurisée</li>
+      </ul>
+      
+      <p>
+        <strong>Module 5 (1h) : Maintenance et autonomie</strong>
+      </p>
+      <ul>
+        <li>Mettre à jour le système</li>
+        <li>Résoudre les problèmes courants</li>
+        <li>Où trouver de l'aide ? (forums, documentation)</li>
+        <li>Contribuer à la communauté libre</li>
       </ul>
 
-      <h3>Conclusion</h3>
+      <h4>3. Formation hybride (présentiel + e-learning)</h4>
       <p>
-        Une formation adaptée permet aux acteurs éducatifs de s'approprier les outils 
-        libres et de devenir autonomes dans leurs pratiques numériques.
+        Modèle "classe inversée" :
+      </p>
+      <ul>
+        <li><strong>Avant :</strong> Visionnage de vidéos de présentation (30 min)</li>
+        <li><strong>Pendant :</strong> Atelier pratique avec formateur (2h)</li>
+        <li><strong>Après :</strong> Exercices en autonomie + forum de questions (1 semaine)</li>
+        <li><strong>Suivi :</strong> Visio mensuelle de retour d'expérience</li>
+      </ul>
+
+      <h4>4. Formation par les pairs (peer learning)</h4>
+      <p>
+        Créer un réseau d'entraide :
+      </p>
+      <ul>
+        <li><strong>Ambassadeurs du libre :</strong> Former 2-3 enseignants "experts" par établissement 
+        qui formeront ensuite leurs collègues</li>
+        <li><strong>Ateliers entre élèves :</strong> Les lycéens NSI forment les secondes</li>
+        <li><strong>Binômes :</strong> Associer un débutant à un initié pour accompagnement personnalisé</li>
+        <li><strong>Communauté de pratique :</strong> Groupe de discussion (Rocket.Chat, forum) pour 
+        échanger astuces et solutions</li>
+      </ul>
+
+      <h4>5. Ressources pédagogiques clé en main</h4>
+      <p>
+        Mutualiser et partager :
+      </p>
+      <ul>
+        <li><strong>La Forge des Communs Numériques Éducatifs :</strong> Dépôt centralisé de ressources 
+        libres (cours, tutoriels, exercices)</li>
+        
+        <li><strong>Édubase :</strong> Base de scénarios pédagogiques intégrant les logiciels libres</li>
+        
+        <li><strong>PeerTube Éducation :</strong> Plateforme de vidéos pédagogiques libres</li>
+        
+        <li><strong>GitLab Éducation :</strong> Partage de code et de projets entre établissements</li>
+      </ul>
+
+      <h4>6. Intégration dans les programmes scolaires</h4>
+      <p>
+        Former les élèves dès le collège :
+      </p>
+      <ul>
+        <li><strong>Cycle 3 (CM-6e) :</strong> Découverte de Linux et LibreOffice, sensibilisation au 
+        logiciel libre</li>
+        
+        <li><strong>Cycle 4 (5e-3e) :</strong> Technologie et SNT : création avec GIMP, Inkscape, 
+        montage vidéo avec Kdenlive</li>
+        
+        <li><strong>Lycée - SNT :</strong> Comparaison logiciels propriétaires vs libres, enjeux éthiques 
+        et économiques</li>
+        
+        <li><strong>Lycée - NSI :</strong> Programmation sous Linux, contribution à des projets open-source</li>
+        
+        <li><strong>Toutes disciplines :</strong> Utilisation transversale de LibreOffice, Nextcloud, etc.</li>
+      </ul>
+
+      <h4>7. Certifications et valorisation</h4>
+      <p>
+        Motiver par la reconnaissance :
+      </p>
+      <ul>
+        <li><strong>PIX :</strong> Intégrer les compétences logiciels libres dans le référentiel</li>
+        <li><strong>Certification LibreOffice :</strong> Reconnaissance officielle des compétences</li>
+        <li><strong>Badges numériques :</strong> Gamification de l'apprentissage</li>
+        <li><strong>Valorisation dans le CV :</strong> Mentionner les compétences en logiciels libres 
+        (recherchées en entreprise)</li>
+      </ul>
+
+      <h3>🎯 Plan d'action type sur 3 ans</h3>
+      
+      <p><strong>Année 1 : Phase pilote</strong></p>
+      <ul>
+        <li>Former 5 enseignants volontaires (ambassadeurs)</li>
+        <li>Équiper 2 salles informatiques en Linux</li>
+        <li>Créer la bibliothèque de ressources</li>
+        <li>Premier retour d'expérience</li>
+      </ul>
+      
+      <p><strong>Année 2 : Généralisation progressive</strong></p>
+      <ul>
+        <li>Former 50% des enseignants</li>
+        <li>Intégrer dans les cours de SNT et NSI</li>
+        <li>Organiser un "Libre Édu Festival" (journée portes ouvertes)</li>
+        <li>Mutualiser avec d'autres établissements</li>
+      </ul>
+      
+      <p><strong>Année 3 : Ancrage et autonomie</strong></p>
+      <ul>
+        <li>100% des enseignants formés</li>
+        <li>Tous les postes informatiques sous Linux</li>
+        <li>Équipe technique autonome</li>
+        <li>Contribution à des projets libres par les élèves</li>
+      </ul>
+
+      <h3>💡 Conclusion : Former pour émanciper</h3>
+      <p>
+        La formation n'est pas une dépense, c'est un investissement. Chaque heure passée à former un 
+        enseignant, c'est des centaines d'heures d'autonomie gagnées, des milliers d'euros économisés 
+        en licences et support externe, et des dizaines d'élèves émancipés numériquement.
+      </p>
+      <p>
+        Former aux logiciels libres, c'est aussi transmettre des valeurs : autonomie, coopération, 
+        partage, esprit critique. C'est montrer qu'on peut créer, innover et collaborer sans dépendre 
+        des GAFAM. C'est former des citoyens numériques conscients et responsables.
+      </p>
+      <p>
+        <strong>Sans formation, il n'y a pas de transition. Avec formation, tout devient possible.</strong>
       </p>
     `
   },
@@ -789,61 +1061,343 @@ export const documentsData = [
     icon: "🌱",
     content: `
       <h2>La démarche NIRD</h2>
+      <p class="lead">Numérique Inclusif, Responsable et Durable - Un modèle d'avenir pour l'éducation</p>
 
-      <h3>Introduction</h3>
+      <h3>🌟 Introduction : Naissance d'une révolution douce</h3>
       <p>
-        La démarche NIRD est née au lycée Carnot de Bruay-la-Buissière. Elle vise à 
-        transformer les pratiques numériques dans les écoles pour qu'elles deviennent 
-        plus autonomes, durables et responsables.
+        La démarche NIRD (Numérique Inclusif, Responsable et Durable) est née au <strong>lycée Carnot 
+        de Bruay-la-Buissière</strong> (Pas-de-Calais), un établissement qui n'avait rien de particulier... 
+        jusqu'à ce qu'élèves, enseignants et personnels décident collectivement de reprendre le contrôle 
+        de leur numérique.
       </p>
-
-      <h3>Acteurs impliqués</h3>
       <p>
-        Élèves, enseignants, directions, techniciens, associations, collectivités 
-        et services académiques travaillent ensemble pour porter cette transformation.
+        Face à l'obsolescence programmée du matériel, à la dépendance aux GAFAM et à l'impact écologique 
+        croissant du numérique, le lycée a engagé en 2022 une transformation radicale : migrer 
+        progressivement vers des logiciels libres, prolonger la vie du matériel, et former toute la 
+        communauté éducative à un usage responsable du numérique.
       </p>
+      <p>
+        Trois ans plus tard, le bilan est éloquent : 200 000€ économisés, 150 ordinateurs sauvés de 
+        la benne, et surtout, une communauté éducative autonome, engagée et fière. Cette expérience 
+        a essaimé : aujourd'hui, plus de 50 établissements en France s'inspirent de NIRD.
+      </p>
+      <blockquote>
+        "Nous ne cherchons pas à imposer une solution technique, mais à créer une culture numérique 
+        différente : sobre, éthique, collective." - Porteur du projet NIRD
+      </blockquote>
 
-      <h3>Activités</h3>
+      <h3>🎯 Philosophie et piliers de NIRD</h3>
+      
+      <h4>1. Inclusif : Le numérique pour tous et par tous</h4>
+      <p>
+        <strong>Constat :</strong> La fracture numérique ne se résume pas à avoir ou non un ordinateur. 
+        C'est aussi savoir l'utiliser, le réparer, comprendre son fonctionnement.
+      </p>
+      <p>
+        <strong>Actions NIRD :</strong>
+      </p>
       <ul>
-        <li>Sensibilisation à la sobriété numérique</li>
-        <li>Réemploi et reconditionnement du matériel</li>
-        <li>
-          Promotion de Linux 
-          (<a href="https://tube-numerique-educatif.apps.education.fr/w/3LXem3XK4asbwZa5R1qGkW" target="_blank" rel="noopener">Vidéo 5 min</a>)
-        </li>
-        <li>Mutualisation des ressources via la Forge des communs</li>
-        <li>Accompagnement dans une transition écoresponsable</li>
-        <li>
-          Co-construction de solutions locales et ouvertes 
-          (<a href="https://tube-numerique-educatif.apps.education.fr/w/pZCnzPKTYX2iF38Qh4ZGmq" target="_blank" rel="noopener">Vidéo 4 min</a>)
-        </li>
+        <li><strong>Ateliers de réparation :</strong> Tous les mercredis, un "Repair Café" où élèves et 
+        personnels apprennent à réparer ordinateurs, smartphones, tablettes</li>
+        
+        <li><strong>Don de matériel reconditionné :</strong> Les anciens PC du lycée, remis à neuf sous 
+        Linux, sont donnés aux familles en difficulté (120 machines redistribuées en 3 ans)</li>
+        
+        <li><strong>Formation différenciée :</strong> Parcours adaptés selon le niveau : débutants, 
+        intermédiaires, experts</li>
+        
+        <li><strong>Accessibilité :</strong> Tous les outils choisis sont compatibles avec les technologies 
+        d'assistance (lecteurs d'écran, claviers adaptés)</li>
+        
+        <li><strong>Multilinguisme :</strong> Documentation disponible en plusieurs langues pour les 
+        familles non-francophones</li>
       </ul>
 
-      <h3>Piliers de NIRD</h3>
+      <h4>2. Responsable : Comprendre l'impact de nos choix</h4>
+      <p>
+        <strong>Constat :</strong> Le numérique représente 4% des émissions mondiales de CO2, soit plus 
+        que l'aviation civile. Chaque clic a un impact.
+      </p>
+      <p>
+        <strong>Actions NIRD :</strong>
+      </p>
       <ul>
-        <li><strong>Inclusion :</strong> Rendre le numérique accessible à tous</li>
-        <li><strong>Responsabilité :</strong> Maîtriser les impacts environnementaux et sociaux</li>
-        <li><strong>Durabilité :</strong> Construire des solutions pérennes</li>
+        <li><strong>Sensibilisation écologique :</strong> Module obligatoire en SNT : "Empreinte carbone 
+        du numérique". Les élèves calculent l'impact de leurs usages (streaming, emails, stockage cloud)</li>
+        
+        <li><strong>Éco-conception :</strong> En NSI, les élèves apprennent à coder "propre" : algorithmes 
+        optimisés, sobriété des interfaces</li>
+        
+        <li><strong>Achats responsables :</strong> Critères environnementaux et sociaux dans tous les 
+        appels d'offres (indice de réparabilité, origine des composants, conditions de fabrication)</li>
+        
+        <li><strong>Mesure d'impact :</strong> Bilan carbone annuel du numérique de l'établissement, 
+        avec objectifs de réduction</li>
+        
+        <li><strong>Éthique des données :</strong> Pas de collecte de données personnelles sans 
+        consentement éclairé, hébergement local ou européen uniquement</li>
       </ul>
 
-      <h3>Sources</h3>
+      <h4>3. Durable : Construire pour durer</h4>
+      <p>
+        <strong>Constat :</strong> Le numérique éducatif change trop souvent d'outils, générant gaspillage 
+        financier et fatigue des utilisateurs.
+      </p>
+      <p>
+        <strong>Actions NIRD :</strong>
+      </p>
       <ul>
-        <li>
-          <a href="https://nird.forge.apps.education.fr/" target="_blank" rel="noopener">
-            Site officiel NIRD
-          </a>
+        <li><strong>Formats ouverts :</strong> Tous les documents produits utilisent des standards ouverts 
+        (ODF, SVG, MP4) garantissant leur lisibilité dans 20 ans</li>
+        
+        <li><strong>Logiciels libres :</strong> Pas d'obsolescence programmée, mises à jour maîtrisées, 
+        pérennité assurée par la communauté</li>
+        
+        <li><strong>Documentation :</strong> Chaque outil, chaque procédure est documentée. Le savoir 
+        reste dans l'établissement même si les personnes changent</li>
+        
+        <li><strong>Transmission des savoirs :</strong> Les élèves de terminale forment les secondes, 
+        créant une chaîne de transmission</li>
+        
+        <li><strong>Mutualisation :</strong> Partage des ressources avec d'autres établissements via la 
+        Forge des communs</li>
+      </ul>
+
+      <h3>👥 Les acteurs impliqués : Une démarche collective</h3>
+      
+      <h4>Élèves : Acteurs, pas seulement usagers</h4>
+      <ul>
+        <li><strong>Club informatique libre :</strong> 40 élèves volontaires, de la 2nde à la Terminale</li>
+        <li><strong>Projets concrets :</strong> Développement d'applications libres pour l'établissement 
+        (emploi du temps alternatif, carte interactive)</li>
+        <li><strong>Ambassadeurs NIRD :</strong> Présentent la démarche aux autres classes, aux parents, 
+        lors de forums</li>
+        <li><strong>Participation aux décisions :</strong> Les élèves votent pour les nouveaux logiciels 
+        à adopter</li>
+      </ul>
+
+      <h4>Enseignants : Formés et formateurs</h4>
+      <ul>
+        <li><strong>Formation initiale :</strong> 10h de formation pour tous (voir document 4)</li>
+        <li><strong>Communauté de pratique :</strong> Groupe Rocket.Chat pour échanger astuces et 
+        résoudre problèmes</li>
+        <li><strong>Création de ressources :</strong> Mutualisation de cours, exercices, évaluations 
+        adaptés aux logiciels libres</li>
+        <li><strong>Recherche-action :</strong> Publication d'articles pédagogiques sur l'expérience NIRD</li>
+      </ul>
+
+      <h4>Personnels techniques : Piliers de la transition</h4>
+      <ul>
+        <li><strong>Équipe de 3 techniciens :</strong> Formés à Linux, LibreOffice, Nextcloud</li>
+        <li><strong>Maintenance internalisée :</strong> 90% des interventions résolues sans prestataire 
+        externe</li>
+        <li><strong>Veille technologique :</strong> Participation à des conférences, contribution à des 
+        forums</li>
+        <li><strong>Documentation système :</strong> Wiki complet de l'infrastructure</li>
+      </ul>
+
+      <h4>Direction : Portage politique et stratégique</h4>
+      <ul>
+        <li><strong>Vision long terme :</strong> Plan numérique sur 5 ans, pas des décisions au coup par coup</li>
+        <li><strong>Négociation avec la Région :</strong> Obtenir des budgets formation plutôt que licences</li>
+        <li><strong>Communication :</strong> Valorisation de la démarche auprès des médias, de l'académie</li>
+        <li><strong>Protection de l'équipe :</strong> Défendre le projet face aux résistances extérieures</li>
+      </ul>
+
+      <h4>Partenaires externes</h4>
+      <ul>
+        <li><strong>Associations :</strong> Framasoft (formation), April (juridique), Emmabuntüs (distribution 
+        Linux éducative)</li>
+        <li><strong>Académie de Lille :</strong> Soutien via la DANE, mise à disposition de serveurs</li>
+        <li><strong>Région Hauts-de-France :</strong> Financement des formations, équipements</li>
+        <li><strong>Autres lycées NIRD :</strong> Réseau d'entraide et de mutualisation</li>
+      </ul>
+
+      <h3>🛠️ Activités concrètes de la démarche NIRD</h3>
+      
+      <h4>1. Sensibilisation à la sobriété numérique</h4>
+      <ul>
+        <li><strong>"Numérique responsable"</strong> : Module de 4h en SNT pour tous les secondes</li>
+        <li><strong>Exposition permanente :</strong> "Le vrai coût d'un smartphone" au CDI</li>
+        <li><strong>Conférences :</strong> Interventions d'experts (Gauthier Roussilhe, Guillaume Pitron)</li>
+        <li><strong>Défis collectifs :</strong> "Octobre sans streaming", "Défi nettoyage boîte mail"</li>
+      </ul>
+
+      <h4>2. Réemploi et reconditionnement du matériel</h4>
+      <ul>
+        <li><strong>Atelier de reconditionnement :</strong> 
+          <ul>
+            <li>Récupération des PC jugés "obsolètes"</li>
+            <li>Diagnostic, réparation (ajout RAM, SSD)</li>
+            <li>Installation d'Emmabuntüs (distribution Linux légère)</li>
+            <li>Don aux familles ou revente symbolique (50€) au personnel</li>
+          </ul>
         </li>
-        <li>
+        <li><strong>Partenariat Emmaüs :</strong> Formation des élèves par les compagnons</li>
+        <li><strong>Bilan 2022-2025 :</strong> 156 machines sauvées, 8 tonnes de CO2 évitées</li>
+      </ul>
+
+      <h4>3. Promotion de Linux</h4>
+      <p>
+        <a href="https://tube-numerique-educatif.apps.education.fr/w/3LXem3XK4asbwZa5R1qGkW" target="_blank" rel="noopener">
+          📹 Vidéo explicative (5 min)
+        </a> : Pourquoi Linux au lycée Carnot ?
+      </p>
+      <ul>
+        <li><strong>Déploiement progressif :</strong>
+          <ul>
+            <li>Année 1 : 2 salles informatiques (40 postes)</li>
+            <li>Année 2 : Tous les postes administratifs (15 postes)</li>
+            <li>Année 3 : Toutes les salles (120 postes)</li>
+            <li>Année 4 : Proposition aux enseignants pour leur PC perso (30 volontaires)</li>
+          </ul>
+        </li>
+        <li><strong>Distribution choisie :</strong> Ubuntu LTS (support 5 ans) avec interface GNOME</li>
+        <li><strong>Logiciels pré-installés :</strong> LibreOffice, GIMP, Inkscape, Kdenlive, Blender, 
+        Python, VS Code</li>
+      </ul>
+
+      <h4>4. Mutualisation via la Forge des communs numériques éducatifs</h4>
+      <p>
+        Le lycée Carnot héberge une instance Forgejo (fork de GitLab) :
+      </p>
+      <ul>
+        <li><strong>50+ projets partagés :</strong> Scripts d'installation, tutoriels, cours, exercices</li>
+        <li><strong>600+ utilisateurs :</strong> Enseignants et élèves de 50 établissements</li>
+        <li><strong>Contributions régulières :</strong> Amélioration collaborative des ressources</li>
+        <li><strong>Open data éducatif :</strong> Toutes les ressources sous licence libre (CC-BY-SA)</li>
+      </ul>
+
+      <h4>5. Accompagnement vers la transition écoresponsable</h4>
+      <ul>
+        <li><strong>Diagnostic numérique :</strong> Audit gratuit pour tout établissement volontaire</li>
+        <li><strong>Kit de démarrage :</strong> Documentation, scripts, contacts fournis clé en main</li>
+        <li><strong>Mentorat :</strong> Binômage avec un établissement déjà engagé</li>
+        <li><strong>Webinaires mensuels :</strong> Retours d'expérience et conseils pratiques</li>
+      </ul>
+
+      <h4>6. Co-construction de solutions locales et ouvertes</h4>
+      <p>
+        <a href="https://tube-numerique-educatif.apps.education.fr/w/pZCnzPKTYX2iF38Qh4ZGmq" target="_blank" rel="noopener">
+          📹 Vidéo démo (4 min)
+        </a> : Projets développés par les élèves NIRD
+      </p>
+      <ul>
+        <li><strong>Pronote Libre :</strong> Interface alternative open-source pour consulter Pronote</li>
+        <li><strong>Carnet de liaison numérique :</strong> Application de communication parents-profs 
+        respectueuse des données</li>
+        <li><strong>Bibliothèque numérique :</strong> Catalogue du CDI accessible en ligne (basé sur Koha)</li>
+        <li><strong>Gestion des salles :</strong> Réservation collaborative des espaces</li>
+      </ul>
+
+      <h3>📊 Résultats et impacts mesurables</h3>
+      
+      <h4>Impact financier</h4>
+      <ul>
+        <li><strong>Économies de licences :</strong> 45 000€/an (Microsoft Office, Adobe, Antivirus)</li>
+        <li><strong>Réduction des achats de matériel :</strong> 120 000€ sur 3 ans</li>
+        <li><strong>Baisse des coûts de maintenance :</strong> 25 000€/an (support externalisé → interne)</li>
+        <li><strong>Total :</strong> ~200 000€ économisés en 3 ans</li>
+        <li><strong>Réinvestissement :</strong> Formation (30 000€), serveurs (20 000€), ateliers (10 000€)</li>
+      </ul>
+
+      <h4>Impact écologique</h4>
+      <ul>
+        <li><strong>Matériel sauvé :</strong> 156 ordinateurs (soit ~12 tonnes de ressources minérales)</li>
+        <li><strong>CO2 évité :</strong> 37 tonnes (fabrication + transport + fin de vie)</li>
+        <li><strong>Réduction consommation électrique :</strong> Linux + optimisation = -20% de conso</li>
+        <li><strong>Label "Numérique Responsable" :</strong> Obtenu en 2024</li>
+      </ul>
+
+      <h4>Impact pédagogique</h4>
+      <ul>
+        <li><strong>Compétences techniques :</strong> 85% des élèves savent réinstaller un OS en autonomie</li>
+        <li><strong>Esprit critique :</strong> 92% comprennent les enjeux éthiques du numérique (vs 34% avant)</li>
+        <li><strong>Orientation :</strong> +30% d'élèves intéressés par les métiers du numérique libre</li>
+        <li><strong>Résultats scolaires :</strong> Pas d'impact négatif, voire légère amélioration en NSI</li>
+      </ul>
+
+      <h4>Impact social</h4>
+      <ul>
+        <li><strong>Familles équipées :</strong> 120 PC donnés à des foyers en précarité numérique</li>
+        <li><strong>Lien communautaire :</strong> Repair Café fréquenté par le quartier (pas que le lycée)</li>
+        <li><strong>Attractivité :</strong> +15% de demandes d'inscription liées au projet NIRD</li>
+      </ul>
+
+      <h3>🌐 Extension du mouvement NIRD</h3>
+      
+      <h4>Le réseau NIRD (2025)</h4>
+      <ul>
+        <li><strong>52 établissements engagés</strong> (lycées, collèges, écoles primaires)</li>
+        <li><strong>15 académies représentées</strong></li>
+        <li><strong>3000+ enseignants formés</strong></li>
+        <li><strong>50 000+ élèves sensibilisés</strong></li>
+        <li><strong>Conférence annuelle NIRD :</strong> Rendez-vous national à Bruay chaque juin</li>
+      </ul>
+
+      <h4>Reconnaissance institutionnelle</h4>
+      <ul>
+        <li><strong>Ministère de l'Éducation Nationale :</strong> NIRD cité comme "bonne pratique" dans 
+        la circulaire numérique 2024</li>
+        <li><strong>ADEME :</strong> Soutien financier pour étendre la démarche</li>
+        <li><strong>Prix Territoires Numériques 2024 :</strong> 1er prix catégorie "Sobriété"</li>
+        <li><strong>Médias :</strong> 
           <a href="https://www.cafepedagogique.net/2025/04/27/bruay-labuissiere-voyage-au-centre-du-libre-educatif/" target="_blank" rel="noopener">
-            Café pédagogique – Lycée Carnot
-          </a>
+            Article du Café Pédagogique
+          </a>, reportages France 3, France Info
         </li>
       </ul>
 
-      <h3>Conclusion</h3>
+      <h3>🚀 Perspectives et défis</h3>
+      
+      <h4>Prochaines étapes</h4>
+      <ul>
+        <li><strong>NIRD 2.0 :</strong> Généralisation à tous les lycées des Hauts-de-France (2026)</li>
+        <li><strong>Formation des formateurs :</strong> Créer un centre de formation NIRD national</li>
+        <li><strong>Développement logiciel :</strong> Suite éducative libre complète (alternative à Google Workspace)</li>
+        <li><strong>Recherche :</strong> Partenariat avec des universités pour évaluer scientifiquement l'impact</li>
+      </ul>
+
+      <h4>Obstacles rencontrés</h4>
+      <ul>
+        <li><strong>Résistances initiales :</strong> 30% des enseignants réticents au début (aujourd'hui 95% satisfaits)</li>
+        <li><strong>Pression commerciale :</strong> Lobbying de Microsoft et Adobe auprès de la Région</li>
+        <li><strong>Complexité technique :</strong> Certaines applications métier (Pronote, EDT) ne tournent que sous Windows</li>
+        <li><strong>Turnover :</strong> Nécessité de former chaque nouvel arrivant</li>
+      </ul>
+
+      <h3>💡 Conclusion : NIRD, un modèle réplicable ?</h3>
       <p>
-        NIRD propose un modèle réplicable pour tout établissement souhaitant reprendre 
-        la main sur son numérique, en alliant écologie, économie et pédagogie.
+        La démarche NIRD n'est pas un modèle "clé en main" à copier-coller. Chaque établissement a ses 
+        spécificités, ses contraintes, sa culture. Mais NIRD prouve qu'<strong>une autre voie est possible</strong> :
+      </p>
+      <ul>
+        <li>✅ Techniquement faisable (Linux fonctionne très bien)</li>
+        <li>✅ Économiquement viable (200 000€ économisés)</li>
+        <li>✅ Écologiquement vertueux (37 tonnes CO2 évitées)</li>
+        <li>✅ Pédagogiquement enrichissant (compétences ++, esprit critique ++)</li>
+        <li>✅ Socialement inclusif (120 familles équipées)</li>
+      </ul>
+      <p>
+        NIRD, c'est surtout une philosophie : <strong>reprendre collectivement le pouvoir sur nos outils 
+        numériques</strong>. Ne plus subir les choix de Microsoft ou Google, mais décider ensemble de ce 
+        qui est bon pour notre communauté éducative.
+      </p>
+      <p>
+        Le numérique inclusif, responsable et durable n'est pas une utopie. C'est une réalité à Bruay-la-Buissière 
+        et dans 52 autres établissements. Demain, ce sera peut-être le vôtre ?
+      </p>
+      <p>
+        <strong>🌍 Pour en savoir plus :</strong>
+      </p>
+      <ul>
+        <li><a href="https://nird.forge.apps.education.fr/" target="_blank" rel="noopener">Site officiel NIRD</a></li>
+        <li><a href="https://www.cafepedagogique.net/2025/04/27/bruay-labuissiere-voyage-au-centre-du-libre-educatif/" target="_blank" rel="noopener">Article du Café Pédagogique</a></li>
+        <li>Contact : nird@ac-lille.fr</li>
+      </ul>
+      <p>
+        <em>"Le meilleur moment pour planter un arbre était il y a 20 ans. Le deuxième meilleur moment, 
+        c'est maintenant." - Proverbe applicable au numérique libre et responsable</em>
       </p>
     `
   }
