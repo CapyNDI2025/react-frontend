@@ -12,309 +12,288 @@
 export const documentsData = [
   {
     id: 1,
-    title: "Introduction au Projet",
-    summary: "Vue d'ensemble du projet et ses objectifs",
-    icon: "📘",
+    title: "Matériel & équipements",
+    summary: "Réemploi et prolongement de la durée de vie du matériel",
+    icon: "💻",
     content: `
-      <h2>Introduction au Projet</h2>
+      <h2>Matériel & équipements</h2>
+      
+      <h3>Introduction</h3>
       <p>
-        Bienvenue dans notre projet de visualisation de documents interactifs. 
-        Cette application a été conçue pour offrir une expérience utilisateur 
-        moderne et intuitive lors de la consultation de documentation.
+        Le matériel informatique des établissements scolaires est souvent remplacé avant la fin 
+        de sa durée de vie réelle, entraînant des coûts importants et une accumulation de déchets 
+        électroniques. Cette situation est due à l'obsolescence programmée, aux mises à jour 
+        logicielles incompatibles et à la dépendance aux constructeurs et éditeurs propriétaires.
       </p>
-      <h3>Objectifs Principaux</h3>
+
+      <h3>Problématique</h3>
+      <p>
+        Les ordinateurs et tablettes deviennent rapidement obsolètes avec les nouvelles versions 
+        de Windows, ce qui contraint les établissements à renouveler leur parc informatique 
+        régulièrement. Cette situation entraîne des dépenses importantes et génère des déchets 
+        électroniques.
+      </p>
+
+      <h3>Exemples</h3>
       <ul>
-        <li>Faciliter l'accès rapide à l'information</li>
-        <li>Offrir une navigation fluide et agréable</li>
-        <li>Maintenir une architecture modulaire et extensible</li>
-        <li>Garantir une expérience responsive sur tous les appareils</li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=76T8oubek-c" target="_blank" rel="noopener">
+            France Info, septembre 2025 – L'État obligé de jeter des milliers d'ordinateurs
+          </a>
+        </li>
+        <li>
+          <a href="https://video.echirolles.fr/w/hVykGUtRZqRen6eiutqRvQ" target="_blank" rel="noopener">
+            France 3 Alpes, octobre 2025 – Windows 11 et logiciels libres
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=S6GLqkhykmA" target="_blank" rel="noopener">
+            Back Market – L'ordinateur obsolète
+          </a>
+        </li>
       </ul>
-      <h3>Technologies Utilisées</h3>
+
+      <h3>Solutions</h3>
+      <ul>
+        <li>Réemploi et reconditionnement du matériel existant</li>
+        <li>Standardisation du parc informatique</li>
+        <li>Maintenance proactive et préventive</li>
+        <li>Sensibilisation à l'impact écologique</li>
+      </ul>
+
+      <h3>Conclusion</h3>
       <p>
-        Le projet s'appuie sur les technologies modernes du web :
-        React pour l'interface utilisateur, avec une architecture basée 
-        sur des composants réutilisables et maintenables.
-      </p>
-      <p>
-        L'approche modulaire permet d'intégrer facilement de nouvelles 
-        fonctionnalités sans impacter le reste de l'application.
+        Prolonger la vie du matériel réduit les coûts, l'empreinte écologique et renforce 
+        l'autonomie pédagogique des établissements.
       </p>
     `
   },
   {
     id: 2,
-    title: "Architecture Technique",
-    summary: "Structure et organisation du code",
-    icon: "🏗️",
+    title: "Logiciels & licences",
+    summary: "Éviter le verrouillage éducatif et promouvoir le libre",
+    icon: "🔓",
     content: `
-      <h2>Architecture Technique</h2>
+      <h2>Logiciels & licences</h2>
+
+      <h3>Introduction</h3>
       <p>
-        L'architecture de ce module suit les meilleures pratiques de 
-        développement React et vise à maximiser la réutilisabilité et 
-        la maintenabilité du code.
+        L'accès gratuit à certains logiciels pendant la scolarité peut cacher un piège : 
+        l'effet de verrouillage éducatif. Après les études, ces logiciels deviennent payants 
+        et imposent une dépendance aux éditeurs.
       </p>
-      <h3>Structure du Module</h3>
+
+      <h3>Problématique</h3>
       <p>
-        Le module documentsView est organisé de manière autonome :
+        Les établissements dépendent souvent de Microsoft 365 ou Adobe Creative Cloud. 
+        Les habitudes prises pendant la scolarité limitent la possibilité d'adopter des 
+        solutions libres et autonomes.
       </p>
+
+      <h3>Exemples</h3>
       <ul>
-        <li><strong>documentsData.js</strong> : Configuration centralisée des documents</li>
-        <li><strong>DocumentCard.jsx</strong> : Composant de vignette individuelle</li>
-        <li><strong>DocumentContent.jsx</strong> : Zone d'affichage du contenu</li>
-        <li><strong>DocumentsTableView.jsx</strong> : Composant principal orchestrateur</li>
-        <li><strong>styles.css</strong> : Styles isolés et spécifiques au module</li>
+        <li>
+          Microsoft 365 Education et Adobe Creative Cloud gratuits pendant les études 
+          deviennent payants après
+        </li>
+        <li>
+          Open-Sankoré et LibreOffice offrent des alternatives libres et durables
+        </li>
+        <li>
+          <a href="https://www.radiofrance.fr/franceinter/podcasts/le-grand-reportage-de-france-inter/le-grand-reportage-du-mardi-14-octobre-2025-4136495" target="_blank" rel="noopener">
+            France Inter, octobre 2025 – Mises à jour et obsolescence
+          </a>
+        </li>
       </ul>
-      <h3>Principes de Conception</h3>
+
+      <h3>Solutions</h3>
+      <ul>
+        <li>Promouvoir les logiciels libres (LibreOffice, GIMP, Blender)</li>
+        <li>Former les utilisateurs à plusieurs outils équivalents</li>
+        <li>Mutualiser ressources et tutoriels</li>
+        <li>Sensibiliser aux abonnements payants après les études</li>
+      </ul>
+
+      <h3>Conclusion</h3>
       <p>
-        <strong>Séparation des responsabilités :</strong> Chaque composant a un rôle 
-        bien défini et peut évoluer indépendamment.
-      </p>
-      <p>
-        <strong>Indépendance contextuelle :</strong> Le module ne dépend pas du 
-        contexte global de l'application, permettant sa réutilisation dans 
-        différents projets.
-      </p>
-      <p>
-        <strong>Extensibilité :</strong> La structure permet d'ajouter facilement 
-        des fonctionnalités comme la recherche, le filtrage par catégories, 
-        ou différents modes d'affichage.
+        Former aux logiciels libres dès la scolarité garantit l'autonomie numérique 
+        et évite la dépendance aux éditeurs propriétaires.
       </p>
     `
   },
   {
     id: 3,
-    title: "Guide d'Utilisation",
-    summary: "Comment utiliser et configurer le module",
-    icon: "📖",
+    title: "Données & vie privée",
+    summary: "Souveraineté numérique et protection des données",
+    icon: "🔒",
     content: `
-      <h2>Guide d'Utilisation</h2>
-      <p>
-        Ce guide vous explique comment intégrer et utiliser le module 
-        DocumentsTableView dans votre application.
-      </p>
-      <h3>Intégration de Base</h3>
-      <p>
-        Pour utiliser le module, importez simplement le composant principal :
-      </p>
-      <pre><code>import DocumentsTableView from './modules/documentsView/DocumentsTableView';
+      <h2>Données & vie privée</h2>
 
-function App() {
-  return (
-    &lt;div&gt;
-      &lt;DocumentsTableView /&gt;
-    &lt;/div&gt;
-  );
-}</code></pre>
-      <h3>Ajout de Nouveaux Documents</h3>
+      <h3>Introduction</h3>
       <p>
-        Pour ajouter un document, éditez le fichier <code>documentsData.js</code> 
-        et ajoutez un nouvel objet dans le tableau :
+        Les services propriétaires collectent souvent des données personnelles et les 
+        hébergent hors UE, fragilisant la souveraineté numérique des établissements.
       </p>
-      <pre><code>{
-  id: 4,
-  title: "Nouveau Document",
-  summary: "Description courte",
-  icon: "🎯",
-  content: \`&lt;h2&gt;Titre&lt;/h2&gt;&lt;p&gt;Contenu...&lt;/p&gt;\`
-}</code></pre>
-      <h3>Personnalisation</h3>
+
+      <h3>Problématique</h3>
       <p>
-        Les styles sont centralisés dans <code>styles.css</code>. Vous pouvez 
-        modifier les couleurs, espacements et animations selon vos besoins.
+        Le stockage externe des données peut rendre les établissements vulnérables en 
+        cas de changement de conditions d'utilisation ou de fermeture de services. 
+        La dépendance à des plateformes tierces limite le contrôle sur les informations 
+        sensibles.
       </p>
-      <h3>Responsive Design</h3>
-      <p>
-        Le module s'adapte automatiquement à la taille de l'écran :
-      </p>
+
+      <h3>Exemples</h3>
       <ul>
-        <li>Sur grand écran : vignettes sur les côtés, contenu au centre</li>
-        <li>Sur tablette : disposition optimisée</li>
-        <li>Sur mobile : vignettes en grille, contenu en dessous</li>
+        <li>
+          Google Workspace et Microsoft 365 Education hébergent souvent les données hors UE
+        </li>
+        <li>
+          Des établissements migrés vers des solutions open-source hébergées localement 
+          gardent un contrôle total sur leurs données
+        </li>
+      </ul>
+
+      <h3>Solutions</h3>
+      <ul>
+        <li>Hébergement local ou européen des données</li>
+        <li>Portabilité des fichiers (formats ouverts)</li>
+        <li>Chartes d'usage et sensibilisation RGPD</li>
+        <li>Adoption de logiciels libres respectueux de la vie privée</li>
+      </ul>
+
+      <h3>Sources</h3>
+      <ul>
+        <li>
+          <a href="https://www.cnil.fr/fr/les-membres-du-collectif-educnum?utm_source=chatgpt.com" target="_blank" rel="noopener">
+            CNIL – Protection des données dans les écoles
+          </a>
+        </li>
+        <li>
+          <a href="https://interoperable-europe.ec.europa.eu/collection/open-source-observatory-osor/news/open-source-and-data-protection-education-france?utm_source=chatgpt.com" target="_blank" rel="noopener">
+            OSOR – Open source & data protection
+          </a>
+        </li>
       </ul>
     `
   },
   {
     id: 4,
-    title: "Fonctionnalités Avancées",
-    summary: "Extensions et améliorations possibles",
-    icon: "⚡",
+    title: "Accompagnement & formation",
+    summary: "Former pour une transition numérique réussie",
+    icon: "🎓",
     content: `
-      <h2>Fonctionnalités Avancées</h2>
+      <h2>Accompagnement & formation</h2>
+
+      <h3>Introduction</h3>
       <p>
-        Le module a été conçu avec l'extensibilité à l'esprit. Voici quelques 
-        améliorations possibles pour enrichir l'expérience utilisateur.
+        Former élèves et enseignants est essentiel pour réussir la transition vers 
+        un numérique autonome et durable. Sans accompagnement, les établissements 
+        restent dépendants des solutions propriétaires.
       </p>
-      <h3>Recherche et Filtrage</h3>
+
+      <h3>Problématique</h3>
       <p>
-        Une barre de recherche pourrait être ajoutée pour filtrer les documents 
-        en temps réel selon le titre ou le contenu. Cette fonctionnalité peut 
-        être implémentée en ajoutant un état de recherche et en filtrant le 
-        tableau de documents.
+        L'absence de formation entraîne une dépendance continue aux logiciels propriétaires 
+        et prestataires externes. Les enseignants et élèves reproduisent les pratiques 
+        apprises sans connaître les alternatives.
       </p>
-      <h3>Catégories et Tags</h3>
-      <p>
-        L'ajout de catégories permettrait d'organiser les documents par thème :
-      </p>
+
+      <h3>Exemples</h3>
       <ul>
-        <li>Ajouter un champ <code>category</code> dans documentsData</li>
-        <li>Créer un système de filtrage par catégorie</li>
-        <li>Afficher des badges colorés pour chaque catégorie</li>
+        <li>
+          <a href="https://luttes.frama.io/pour/le-logiciel-libre/news/2025/07/13/quelques-liens-sur-le-logiciel-libre-dans-l-education-et-la-fonction-publique.html?utm_source=chatgpt.com" target="_blank" rel="noopener">
+            Framasoft et Éducnum – Ressources pédagogiques
+          </a>
+        </li>
+        <li>
+          Socles numériques alternatifs dans certains lycées
+        </li>
+        <li>
+          <a href="https://arxiv.org/abs/2012.07744?utm_source=chatgpt.com" target="_blank" rel="noopener">
+            Green IT – Sobriété numérique
+          </a>
+        </li>
       </ul>
-      <h3>Modes d'Affichage</h3>
-      <p>
-        Plusieurs modes de visualisation pourraient coexister :
-      </p>
+
+      <h3>Solutions</h3>
       <ul>
-        <li><strong>Mode Table</strong> : disposition actuelle</li>
-        <li><strong>Mode Grille</strong> : cartes en grille uniforme</li>
-        <li><strong>Mode Liste</strong> : affichage compact en liste</li>
-        <li><strong>Mode Timeline</strong> : organisation chronologique</li>
+        <li>Guides complets pour l'utilisation de logiciels libres</li>
+        <li>Boîte à outils pédagogique avec tutoriels</li>
+        <li>Communauté d'échanges et partage de bonnes pratiques</li>
+        <li>Accompagnement personnalisé selon les besoins</li>
       </ul>
-      <h3>Animations et Interactions</h3>
+
+      <h3>Conclusion</h3>
       <p>
-        Des animations supplémentaires peuvent améliorer l'expérience :
-      </p>
-      <ul>
-        <li>Transition 3D lors de la sélection d'un document</li>
-        <li>Effet de parallaxe sur les cartes</li>
-        <li>Animation de chargement pour le contenu</li>
-        <li>Gestes tactiles pour la navigation mobile</li>
-      </ul>
-      <h3>Persistance de la Sélection</h3>
-      <p>
-        Sauvegarder le document sélectionné dans le localStorage permet 
-        de retrouver l'état lors du retour sur la page.
+        Une formation adaptée permet aux acteurs éducatifs de s'approprier les outils 
+        libres et de devenir autonomes dans leurs pratiques numériques.
       </p>
     `
   },
   {
     id: 5,
-    title: "Performance et Optimisation",
-    summary: "Bonnes pratiques et optimisations",
-    icon: "🚀",
+    title: "La démarche NIRD",
+    summary: "Numérique Inclusif, Responsable et Durable",
+    icon: "🌱",
     content: `
-      <h2>Performance et Optimisation</h2>
+      <h2>La démarche NIRD</h2>
+
+      <h3>Introduction</h3>
       <p>
-        Pour garantir une expérience fluide, plusieurs optimisations ont été 
-        mises en place et d'autres peuvent être envisagées.
+        La démarche NIRD est née au lycée Carnot de Bruay-la-Buissière. Elle vise à 
+        transformer les pratiques numériques dans les écoles pour qu'elles deviennent 
+        plus autonomes, durables et responsables.
       </p>
-      <h3>Optimisations Actuelles</h3>
+
+      <h3>Acteurs impliqués</h3>
       <p>
-        <strong>Lazy Loading :</strong> Le contenu des documents n'est rendu 
-        que lorsqu'il est sélectionné, évitant de charger tout le HTML en mémoire.
+        Élèves, enseignants, directions, techniciens, associations, collectivités 
+        et services académiques travaillent ensemble pour porter cette transformation.
       </p>
-      <p>
-        <strong>CSS Isolé :</strong> Les styles du module sont séparés pour 
-        éviter les conflits et améliorer la maintenabilité.
-      </p>
-      <h3>Optimisations Recommandées</h3>
-      <p>
-        <strong>Memoization :</strong> Utiliser <code>React.memo</code> sur 
-        les composants DocumentCard pour éviter les re-rendus inutiles.
-      </p>
-      <pre><code>export default React.memo(DocumentCard);</code></pre>
-      <p>
-        <strong>Virtualisation :</strong> Pour un grand nombre de documents 
-        (plus de 50), implémenter une liste virtualisée avec react-window.
-      </p>
-      <p>
-        <strong>Code Splitting :</strong> Charger le module de manière asynchrone 
-        avec React.lazy pour réduire le bundle initial.
-      </p>
-      <pre><code>const DocumentsTableView = React.lazy(() => 
-  import('./modules/documentsView/DocumentsTableView')
-);</code></pre>
-      <h3>Gestion de la Mémoire</h3>
-      <p>
-        Pour les contenus très volumineux :
-      </p>
+
+      <h3>Activités</h3>
       <ul>
-        <li>Limiter le nombre de documents affichés simultanément</li>
-        <li>Implémenter une pagination ou un chargement infini</li>
-        <li>Optimiser les images avec lazy loading natif</li>
-        <li>Utiliser des formats d'image modernes (WebP, AVIF)</li>
+        <li>Sensibilisation à la sobriété numérique</li>
+        <li>Réemploi et reconditionnement du matériel</li>
+        <li>
+          Promotion de Linux 
+          (<a href="https://tube-numerique-educatif.apps.education.fr/w/3LXem3XK4asbwZa5R1qGkW" target="_blank" rel="noopener">Vidéo 5 min</a>)
+        </li>
+        <li>Mutualisation des ressources via la Forge des communs</li>
+        <li>Accompagnement dans une transition écoresponsable</li>
+        <li>
+          Co-construction de solutions locales et ouvertes 
+          (<a href="https://tube-numerique-educatif.apps.education.fr/w/pZCnzPKTYX2iF38Qh4ZGmq" target="_blank" rel="noopener">Vidéo 4 min</a>)
+        </li>
       </ul>
-      <h3>Accessibilité</h3>
-      <p>
-        Les bonnes pratiques d'accessibilité améliorent aussi les performances :
-      </p>
+
+      <h3>Piliers de NIRD</h3>
       <ul>
-        <li>Utiliser des balises sémantiques appropriées</li>
-        <li>Assurer la navigation au clavier</li>
-        <li>Fournir des attributs ARIA pour les lecteurs d'écran</li>
-        <li>Maintenir un bon contraste de couleurs</li>
+        <li><strong>Inclusion :</strong> Rendre le numérique accessible à tous</li>
+        <li><strong>Responsabilité :</strong> Maîtriser les impacts environnementaux et sociaux</li>
+        <li><strong>Durabilité :</strong> Construire des solutions pérennes</li>
       </ul>
-    `
-  },
-  {
-    id: 6,
-    title: "Maintenance et Évolution",
-    summary: "Maintenir et faire évoluer le module",
-    icon: "🔧",
-    content: `
-      <h2>Maintenance et Évolution</h2>
-      <p>
-        Un code bien structuré facilite grandement la maintenance et l'évolution 
-        du projet dans le temps.
-      </p>
-      <h3>Conventions de Code</h3>
-      <p>
-        Le projet suit des conventions strictes pour assurer la cohérence :
-      </p>
+
+      <h3>Sources</h3>
       <ul>
-        <li>Nommage en camelCase pour les variables et fonctions</li>
-        <li>Nommage en PascalCase pour les composants React</li>
-        <li>Fichiers de composants en .jsx</li>
-        <li>Un composant par fichier</li>
-        <li>Import/export explicites</li>
+        <li>
+          <a href="https://nird.forge.apps.education.fr/" target="_blank" rel="noopener">
+            Site officiel NIRD
+          </a>
+        </li>
+        <li>
+          <a href="https://www.cafepedagogique.net/2025/04/27/bruay-labuissiere-voyage-au-centre-du-libre-educatif/" target="_blank" rel="noopener">
+            Café pédagogique – Lycée Carnot
+          </a>
+        </li>
       </ul>
-      <h3>Documentation du Code</h3>
+
+      <h3>Conclusion</h3>
       <p>
-        Chaque fichier important doit contenir :
+        NIRD propose un modèle réplicable pour tout établissement souhaitant reprendre 
+        la main sur son numérique, en alliant écologie, économie et pédagogie.
       </p>
-      <ul>
-        <li>Un commentaire d'en-tête décrivant son rôle</li>
-        <li>Des JSDoc pour les fonctions complexes</li>
-        <li>Des commentaires explicatifs pour la logique non-évidente</li>
-      </ul>
-      <h3>Tests</h3>
-      <p>
-        Pour garantir la stabilité, envisager d'ajouter :
-      </p>
-      <ul>
-        <li><strong>Tests unitaires :</strong> Avec Jest et React Testing Library</li>
-        <li><strong>Tests d'intégration :</strong> Pour vérifier les interactions</li>
-        <li><strong>Tests visuels :</strong> Avec Storybook ou Chromatic</li>
-      </ul>
-      <h3>Versioning</h3>
-      <p>
-        Utiliser Git de manière structurée :
-      </p>
-      <ul>
-        <li>Commits atomiques et descriptifs</li>
-        <li>Messages de commit suivant Conventional Commits</li>
-        <li>Branches feature pour chaque nouvelle fonctionnalité</li>
-        <li>Pull requests avec review de code</li>
-      </ul>
-      <h3>Dépendances</h3>
-      <p>
-        Maintenir les dépendances à jour :
-      </p>
-      <ul>
-        <li>Vérifier régulièrement les mises à jour de sécurité</li>
-        <li>Tester les breaking changes avant de migrer</li>
-        <li>Documenter les raisons des choix de versions</li>
-      </ul>
-      <h3>Refactoring</h3>
-      <p>
-        Prévoir des sessions de refactoring régulières pour :
-      </p>
-      <ul>
-        <li>Éliminer le code dupliqué</li>
-        <li>Améliorer la lisibilité</li>
-        <li>Optimiser les performances</li>
-        <li>Simplifier la complexité</li>
-      </ul>
     `
   }
 ];
