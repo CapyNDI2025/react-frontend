@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 /**
  * DocumentCard - Composant de vignette pour afficher un document
@@ -34,17 +33,6 @@ const DocumentCard = ({ document, isSelected, onClick }) => {
       )}
     </div>
   );
-};
-
-DocumentCard.propTypes = {
-  document: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    summary: PropTypes.string,
-    icon: PropTypes.string,
-  }).isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default DocumentCard;

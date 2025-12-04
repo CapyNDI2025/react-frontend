@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 /**
  * DocumentContent - Composant pour afficher le contenu complet d'un document
@@ -35,19 +34,6 @@ const DocumentContent = ({ document }) => {
       />
     </div>
   );
-};
-
-DocumentContent.propTypes = {
-  document: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string,
-    content: PropTypes.string.isRequired,
-  }),
-};
-
-DocumentContent.defaultProps = {
-  document: null,
 };
 
 export default DocumentContent;
