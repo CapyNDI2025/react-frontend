@@ -6,6 +6,9 @@ import { themes } from '../styles/theme'
 import AppRoutes from '../routes/routes'
 import AtmButton from '../components/atoms/AtmButton'
 import { useTranslation } from '../i18n/LanguageContext'
+// ======== TEST: Module DocumentsTableView ========
+import DocumentsTableView from '../modules/documentsView/DocumentsTableView'
+// ==================================================
 
 const AppContainer = styled.div`
   background-color: ${props => props.theme.colors.background};
@@ -34,6 +37,10 @@ const App = () => {
           <AppTitle>{t('app.title')}</AppTitle>
           <AtmButton label={`${t('button.toggleTheme')} ${t(`app.theme.${currentTheme}`)}`} onClick={toggleTheme} />
           <AppRoutes />
+          
+          {/* ======== TEST: Module DocumentsTableView ======== */}
+          <DocumentsTableView />
+          {/* ================================================== */}
         </AppContainer>
       </Router>
     </ThemeProvider>
