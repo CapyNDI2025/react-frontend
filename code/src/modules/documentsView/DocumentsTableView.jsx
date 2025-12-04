@@ -37,26 +37,31 @@ const DocumentsTableView = () => {
           </p>
         </div>
 
-        {/* Table 3D avec documents */}
+        {/* Table 3D avec documents autour du contenu */}
         <div className="documents-table-view__table-container">
           <div className="documents-table-view__table">
+            
+            {/* Documents autour de la zone centrale */}
             <div className="documents-table-view__cards-grid">
-              {documentsData.map((document) => (
+              {documentsData.map((document, index) => (
                 <DocumentCard
                   key={document.id}
                   document={document}
                   isSelected={selectedDocumentId === document.id}
                   onClick={() => handleDocumentSelect(document.id)}
+                  styleIndex={index}
                 />
               ))}
             </div>
+
+            {/* Zone de contenu au centre de la table */}
+            <div className="documents-table-view__content-wrapper">
+              <main className="documents-table-view__content">
+                <DocumentContent document={selectedDocument} />
+              </main>
+            </div>
           </div>
         </div>
-
-        {/* Zone de contenu */}
-        <main className="documents-table-view__content">
-          <DocumentContent document={selectedDocument} />
-        </main>
       </div>
     </div>
   );

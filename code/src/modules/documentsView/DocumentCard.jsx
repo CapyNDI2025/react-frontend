@@ -7,11 +7,12 @@ import React from 'react';
  * @param {Object} props.document - Les données du document
  * @param {boolean} props.isSelected - Indique si le document est sélectionné
  * @param {Function} props.onClick - Fonction appelée lors du clic
+ * @param {number} props.styleIndex - Index pour varier le style visuel
  */
-const DocumentCard = ({ document, isSelected, onClick }) => {
+const DocumentCard = ({ document, isSelected, onClick, styleIndex = 0 }) => {
   return (
     <div
-      className={`document-card ${isSelected ? 'document-card--selected' : ''}`}
+      className={`document-card document-card--style-${styleIndex % 5} ${isSelected ? 'document-card--selected' : ''}`}
       onClick={onClick}
       role="button"
       tabIndex={0}
