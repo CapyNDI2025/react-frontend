@@ -12,9 +12,10 @@ const OverlayContainer = styled.div`
   pointer-events: none;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
   padding: 2rem;
+  padding-right: 5%;
   box-sizing: border-box;
   z-index: 10;
 `;
@@ -23,7 +24,7 @@ const ChatBox = styled.div`
   position: relative;
   width: ${props => props.$width}px;
   height: ${props => props.$height}px;
-  max-width: 95vw;
+  max-width: 50vw;
   max-height: 90vh;
   min-width: 300px;
   min-height: 200px;
@@ -53,9 +54,9 @@ const Handle = styled.div`
   }
 `;
 
-const RightHandle = styled(Handle)`
+const LeftHandle = styled(Handle)`
   top: 0;
-  right: 0;
+  left: 0;
   width: 10px;
   height: 100%;
   cursor: ew-resize;
@@ -71,21 +72,21 @@ const TopHandle = styled(Handle)`
 
 const CornerHandle = styled(Handle)`
   top: 0;
-  right: 0;
+  left: 0;
   width: 20px;
   height: 20px;
-  cursor: nesw-resize;
-  border-top-right-radius: 24px;
+  cursor: nwse-resize;
+  border-top-left-radius: 24px;
   /* Visual indicator for the corner */
   &::after {
     content: '';
     position: absolute;
     top: 6px;
-    right: 6px;
+    left: 6px;
     width: 8px;
     height: 8px;
     border-top: 2px solid rgba(255,255,255,0.5);
-    border-right: 2px solid rgba(255,255,255,0.5);
+    border-left: 2px solid rgba(255,255,255,0.5);
   }
 `;
 
@@ -184,6 +185,37 @@ const SendButton = styled.button`
   }
 `;
 
+const StopButton = styled(SendButton)`
+  background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+  
+  &:hover:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(255, 65, 108, 0.3);
+  }
+`;
+
+const LoadingDots = styled.div`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 100%;
+  
+  span {
+    width: 6px;
+    height: 6px;
+    background-color: currentColor;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+    
+    &:nth-child(1) { animation-delay: -0.32s; }
+    &:nth-child(2) { animation-delay: -0.16s; }
+  }
+  
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+`;
+
 const StatusIndicator = styled.div`
   font-size: 0.75rem;
   color: rgba(0, 191, 255, 0.8);
@@ -199,7 +231,7 @@ const StatusIndicator = styled.div`
   
   &::before {
     content: '';
-    display: ${props => props.$active ? 'block' : 'none'};
+    display: ${props => props.$status === 'speaking' ? 'block' : 'none'};
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -208,14 +240,52 @@ const StatusIndicator = styled.div`
   }
 `;
 
+const SpeakButton = styled.button`
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s;
+  font-size: 0.8rem;
+  font-weight: 500;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+`;
+
 const OrgChatInterface = () => {
-  const { messages, status, inputValue, setInputValue, handleSendMessage } = useAIChat();
+  const { 
+    messages, 
+    status, 
+    emotion,
+    stopGeneration,
+    inputValue,
+    setInputValue,
+    handleSendMessage,
+    speakText,
+    speakingIndex
+  } = useAIChat();
   const messagesEndRef = useRef(null);
   
   // Resize State
-  const [dims, setDims] = useState({ w: 800, h: 300 });
+  const [dims, setDims] = useState({ w: 500, h: 600 });
   const isResizing = useRef(false);
-  const resizeDir = useRef(null); // 'right', 'top', 'corner'
+  const resizeDir = useRef(null); // 'left', 'top', 'corner'
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -241,28 +311,29 @@ const OrgChatInterface = () => {
       let newW = prev.w;
       let newH = prev.h;
 
-      // Resize Width (Right Handle)
-      if (resizeDir.current === 'right' || resizeDir.current === 'corner') {
-        // Calculate width based on center alignment
-        // Since the box is centered by flexbox, dragging right increases width from center
-        // This is tricky with flex center. 
-        // Simpler approach: Just track delta X, but since it's centered, 
-        // we might need to just use absolute mouse position relative to window center?
-        // Let's keep it simple: Dragging right increases width.
-        const centerX = window.innerWidth / 2;
-        const distFromCenter = e.clientX - centerX;
-        newW = distFromCenter * 2; // Symmetric resize
+      // Resize Width (Left Handle)
+      if (resizeDir.current === 'left' || resizeDir.current === 'corner') {
+        // Dragging left increases width
+        // We assume the container has padding-right: 5% (approx 5vw)
+        // Let's use a simpler delta approach or absolute calculation
+        // Right edge is roughly fixed at window.innerWidth * 0.95
+        const rightEdge = window.innerWidth * 0.95;
+        newW = rightEdge - e.clientX;
       }
 
       // Resize Height (Top Handle)
       if (resizeDir.current === 'top' || resizeDir.current === 'corner') {
-        // Dragging UP increases height (since it's anchored at bottom)
-        const bottomY = window.innerHeight - 40; // Approx padding bottom
-        newH = bottomY - e.clientY;
+        // Since it's centered vertically, dragging top up increases height
+        // Center Y is window.innerHeight / 2
+        // Top Y is e.clientY
+        // Height = (CenterY - TopY) * 2
+        const centerY = window.innerHeight / 2;
+        const distFromCenter = centerY - e.clientY;
+        newH = distFromCenter * 2;
       }
 
       return {
-        w: Math.max(300, Math.min(newW, 1200)),
+        w: Math.max(300, Math.min(newW, 1000)),
         h: Math.max(200, Math.min(newH, 800))
       };
     });
@@ -279,7 +350,7 @@ const OrgChatInterface = () => {
       <ChatBox $width={dims.w} $height={dims.h}>
         {/* Handles */}
         <TopHandle onMouseDown={(e) => startResize(e, 'top')} />
-        <RightHandle onMouseDown={(e) => startResize(e, 'right')} />
+        <LeftHandle onMouseDown={(e) => startResize(e, 'left')} />
         <CornerHandle onMouseDown={(e) => startResize(e, 'corner')} />
 
         <MessagesArea>
@@ -288,13 +359,41 @@ const OrgChatInterface = () => {
             .map((msg, index) => (
             <MessageBubble key={index} $isUser={msg.role === 'user'}>
               {msg.content}
+              {msg.role === 'assistant' && (
+                <SpeakButton 
+                  onClick={() => speakText(msg.content, index)} 
+                  title={speakingIndex === index ? "Arrêter la lecture" : "Lire à voix haute"}
+                >
+                  {speakingIndex === index ? (
+                    <>
+                      <svg viewBox="0 0 24 24">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                      </svg>
+                      Arrêter
+                    </>
+                  ) : (
+                    <>
+                      <svg viewBox="0 0 24 24">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                      </svg>
+                      Écouter
+                    </>
+                  )}
+                </SpeakButton>
+              )}
             </MessageBubble>
           ))}
           <div ref={messagesEndRef} />
         </MessagesArea>
         
-        <StatusIndicator $active={status !== 'idle'}>
-          {status === 'thinking' && 'AI is thinking...'}
+        <StatusIndicator $status={status}>
+          {status === 'thinking' && (
+            <LoadingDots>
+              <span></span>
+              <span></span>
+              <span></span>
+            </LoadingDots>
+          )}
           {status === 'speaking' && 'AI is speaking...'}
         </StatusIndicator>
 
@@ -302,12 +401,18 @@ const OrgChatInterface = () => {
           <Input 
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type a message..."
-            disabled={status === 'thinking' || status === 'speaking'}
+            placeholder={status === 'thinking' ? "Thinking..." : "Type a message..."}
+            disabled={status === 'thinking'}
           />
-          <SendButton type="submit" disabled={!inputValue.trim() || status !== 'idle'}>
-            Send
-          </SendButton>
+          {status === 'thinking' ? (
+            <StopButton type="button" onClick={stopGeneration}>
+              Stop
+            </StopButton>
+          ) : (
+            <SendButton type="submit" disabled={!inputValue.trim() || status === 'thinking'}>
+              Send
+            </SendButton>
+          )}
         </InputForm>
       </ChatBox>
     </OverlayContainer>

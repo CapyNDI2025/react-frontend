@@ -18,31 +18,38 @@ const ThreeAtmAvatar = (props) => {
     if (!group.current) return;
 
     // Idle Animation
-    group.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1;
-    group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, state.mouse.x * 0.2, 0.1);
+    // Reduced bobbing amplitude to be less distracting
+    group.current.position.y = Math.sin(state.clock.elapsedTime) * 0.05;
+    
+    // Adjusted rotation tracking:
+    // The planet is visually on the left (approx x = -0.5 in normalized screen space).
+    // We adjust the target so it looks "at" the mouse relative to its own position.
+    // Also reduced the intensity of the tracking.
+    const targetRotation = (state.mouse.x + 0.25) * 0.1; 
+    group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, targetRotation, 0.05);
 
     // Status-based animations
     switch (status) {
       case 'thinking':
-        ring.current.rotation.z += delta * 8;
-        ring.current.rotation.x += delta * 3;
-        head.current.distort = THREE.MathUtils.lerp(head.current.distort, 0.8, 0.1);
-        head.current.speed = 8;
+        ring.current.rotation.z += delta * 4; // Slower thinking spin
+        ring.current.rotation.x += delta * 1.5;
+        head.current.distort = THREE.MathUtils.lerp(head.current.distort, 0.6, 0.1); // Less distortion
+        head.current.speed = 4;
         break;
       case 'speaking':
-        const scale = 1 + Math.sin(state.clock.elapsedTime * 15) * 0.05;
+        const scale = 1 + Math.sin(state.clock.elapsedTime * 10) * 0.02; // Subtler pulse
         head.current.scale.set(scale, scale, scale);
         ring.current.rotation.z += delta * 0.5;
         head.current.distort = THREE.MathUtils.lerp(head.current.distort, 0.3, 0.1);
         head.current.speed = 2;
         break;
       case 'error':
-        group.current.position.x = Math.sin(state.clock.elapsedTime * 30) * 0.1;
+        group.current.position.x = Math.sin(state.clock.elapsedTime * 20) * 0.05;
         break;
       default: // idle
-        ring.current.rotation.z += delta * 0.2;
-        head.current.distort = THREE.MathUtils.lerp(head.current.distort, 0.1, 0.1);
-        head.current.speed = 1;
+        ring.current.rotation.z += delta * 0.1;
+        head.current.distort = THREE.MathUtils.lerp(head.current.distort, 0.1, 0.1); // Minimal distortion in idle
+        head.current.speed = 0.5; // Slower distortion speed
         break;
     }
   });
@@ -57,6 +64,7 @@ const ThreeAtmAvatar = (props) => {
       case 'sad': return '#1E90FF';       // Dodger Blue
       case 'angry': return '#8B0000';     // Dark Red
       case 'surprised': return '#FF69B4'; // Hot Pink
+      case 'france': return '#0055A4';    // French Blue
       default: return '#4B0082';          // Indigo (Neutral)
     }
   };
@@ -68,22 +76,66 @@ const ThreeAtmAvatar = (props) => {
     const isHappy = emotion === 'happy';
     const isSurprised = emotion === 'surprised';
 
+    // Calculate Mouth Shape & Rotation
+    let mouthArc = Math.PI * 0.5;       // Default: Small smile
+    let mouthRotation = Math.PI * 1.25; // Centered at bottom
+
+    if (isSurprised) {
+      mouthArc = Math.PI * 2;
+      mouthRotation = 0;
+    } else if (isHappy) {
+      mouthArc = Math.PI;
+      mouthRotation = Math.PI;
+    } else if (isSad || isAngry) {
+      mouthArc = Math.PI * 0.8;
+      mouthRotation = Math.PI * 0.1;    // Centered frown
+    }
+
     return {
       eyeRotation: isAngry ? 0.4 : (isSad ? -0.2 : 0),
-      mouthArc: isSurprised ? Math.PI * 2 : (isHappy ? Math.PI : (isSad || isAngry ? Math.PI * 0.8 : Math.PI * 0.5)),
-      mouthRotation: isSad || isAngry ? 0 : 3.14, // 0 = frown (down), 3.14 = smile (up)
+      mouthArc,
+      mouthRotation,
       mouthY: isSurprised ? -0.2 : -0.15,
       showTears: isSad,
       showEyebrows: isAngry
     };
   }, [emotion]);
 
+  // --- TEXTURES ---
+  const flagTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    
+    // Vertical stripes for France (Blue-White-Red)
+    // Adjusted widths to make the White stripe look like a "ring" or line
+    // Blue (Left) - Wider
+    ctx.fillStyle = '#0055A4';
+    ctx.fillRect(0, 0, 54, 64);
+    // White (Middle) - Thinner (Strip/Ring)
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(54, 0, 20, 64);
+    // Red (Right) - Wider
+    ctx.fillStyle = '#EF4135';
+    ctx.fillRect(74, 0, 54, 64);
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    // Fix texture wrapping and offset to center the White stripe
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.offset.x = 0.25; // Shift rotation to center the White stripe (Blue-White-Red)
+    
+    return texture;
+  }, []);
+
   return (
     <group ref={group} {...props}>
       {/* Planet Core */}
       <Sphere ref={head} args={[1, 64, 64]} position={[0, 0, 0]}>
         <MeshDistortMaterial 
-          color={getPrimaryColor()} 
+          key={emotion} // Force material recreation to handle texture map addition/removal
+          color={emotion === 'france' ? '#ffffff' : getPrimaryColor()} 
+          map={emotion === 'france' ? flagTexture : undefined}
           roughness={0.2} 
           metalness={0.8}
           distort={0.3}
