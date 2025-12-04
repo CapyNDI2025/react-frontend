@@ -27,30 +27,33 @@ const DocumentsTableView = () => {
     <div className="documents-table-view">
       <div className="documents-table-view__container">
         
-        {/* Zone des cartes de documents */}
-        <aside className="documents-table-view__cards">
-          <div className="documents-table-view__cards-header">
-            <h2 className="documents-table-view__cards-title">
-              📚 Documents
-            </h2>
-            <p className="documents-table-view__cards-subtitle">
-              {documentsData.length} document{documentsData.length > 1 ? 's' : ''} disponible{documentsData.length > 1 ? 's' : ''}
-            </p>
-          </div>
-          
-          <div className="documents-table-view__cards-grid">
-            {documentsData.map((document) => (
-              <DocumentCard
-                key={document.id}
-                document={document}
-                isSelected={selectedDocumentId === document.id}
-                onClick={() => handleDocumentSelect(document.id)}
-              />
-            ))}
-          </div>
-        </aside>
+        {/* En-tête */}
+        <div className="documents-table-view__cards-header">
+          <h2 className="documents-table-view__cards-title">
+            📚 Salle d'archives NIRD
+          </h2>
+          <p className="documents-table-view__cards-subtitle">
+            {documentsData.length} document{documentsData.length > 1 ? 's' : ''} disponible{documentsData.length > 1 ? 's' : ''}
+          </p>
+        </div>
 
-        {/* Zone de contenu central */}
+        {/* Table 3D avec documents */}
+        <div className="documents-table-view__table-container">
+          <div className="documents-table-view__table">
+            <div className="documents-table-view__cards-grid">
+              {documentsData.map((document) => (
+                <DocumentCard
+                  key={document.id}
+                  document={document}
+                  isSelected={selectedDocumentId === document.id}
+                  onClick={() => handleDocumentSelect(document.id)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Zone de contenu */}
         <main className="documents-table-view__content">
           <DocumentContent document={selectedDocument} />
         </main>

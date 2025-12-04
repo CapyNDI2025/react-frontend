@@ -12,147 +12,201 @@
 .documents-table-view {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   padding: 2rem;
+  perspective: 1500px;
 }
 
 .documents-table-view__container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 2rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
 }
 
 /* ============================================
-   ZONE DES CARTES
+   ZONE DE LA TABLE 3D
    ============================================ */
 
-.documents-table-view__cards {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 2rem;
-  max-height: calc(100vh - 4rem);
-  overflow-y: auto;
+.documents-table-view__table-container {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
 }
 
 .documents-table-view__cards-header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid #e0e0e0;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .documents-table-view__cards-title {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #2d3748;
+  color: #ecf0f1;
   margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .documents-table-view__cards-subtitle {
-  font-size: 0.875rem;
-  color: #718096;
+  font-size: 1rem;
+  color: #bdc3c7;
   margin: 0;
 }
 
+/* Table 3D en perspective */
+.documents-table-view__table {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: linear-gradient(145deg, #8B4513, #A0522D);
+  border-radius: 20px;
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    inset 0 2px 10px rgba(255, 255, 255, 0.1),
+    inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+  transform: rotateX(25deg) rotateZ(0deg);
+  transform-style: preserve-3d;
+  padding: 3rem;
+  border: 8px solid #654321;
+}
+
+/* Effet de texture bois */
+.documents-table-view__table::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Grille de documents sur la table */
 .documents-table-view__cards-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  transform-style: preserve-3d;
 }
 
 /* ============================================
-   CARTES DE DOCUMENTS
+   CARTES DE DOCUMENTS (Style physique)
    ============================================ */
 
 .document-card {
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.25rem;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  width: 200px;
+  height: 220px;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateZ(0) rotateX(0deg);
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
+/* Effet papier */
 .document-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: left;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 20px,
+      rgba(200, 200, 200, 0.1) 20px,
+      rgba(200, 200, 200, 0.1) 21px
+    );
+  pointer-events: none;
+  border-radius: 8px;
 }
 
 .document-card:hover {
-  border-color: #667eea;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-}
-
-.document-card:hover::before {
-  transform: scaleX(1);
+  transform: translateZ(30px) translateY(-10px) rotateX(5deg);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.3),
+    0 25px 50px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-color: #3498db;
 }
 
 .document-card--selected {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea15, #764ba215);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-}
-
-.document-card--selected::before {
-  transform: scaleX(1);
+  transform: translateZ(50px) translateY(-20px) rotateX(8deg);
+  box-shadow: 
+    0 20px 40px rgba(52, 152, 219, 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(52, 152, 219, 0.1);
+  border: 2px solid #3498db;
+  background: linear-gradient(145deg, #e3f2fd, #bbdefb);
 }
 
 .document-card:focus {
-  outline: 2px solid #667eea;
-  outline-offset: 2px;
+  outline: 3px solid #3498db;
+  outline-offset: 4px;
 }
 
 .document-card__icon {
-  font-size: 2.5rem;
+  font-size: 4rem;
   margin-bottom: 0.75rem;
   display: inline-block;
-  animation: iconBounce 0.6s ease-out;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
 }
 
-@keyframes iconBounce {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+.document-card:hover .document-card__icon {
+  transform: scale(1.15) rotateZ(5deg);
+}
+
+.document-card--selected .document-card__icon {
+  transform: scale(1.2) rotateZ(-5deg);
+  filter: drop-shadow(3px 3px 6px rgba(52, 152, 219, 0.4));
 }
 
 .document-card__title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin: 0 0 0.5rem 0;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.document-card--selected .document-card__title {
+  color: #2980b9;
 }
 
 .document-card__summary {
-  font-size: 0.875rem;
-  color: #718096;
-  margin: 0;
-  line-height: 1.5;
+  display: none;
 }
 
 /* ============================================
@@ -163,12 +217,15 @@
   background: rgba(255, 255, 255, 0.98);
   border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
-  min-height: 600px;
-  max-height: calc(100vh - 4rem);
+  width: 100%;
+  max-width: 1200px;
+  min-height: 400px;
+  max-height: 600px;
   overflow-y: auto;
   animation: contentFadeIn 0.4s ease-out;
+  border: 2px solid #bdc3c7;
 }
 
 @keyframes contentFadeIn {
@@ -329,13 +386,20 @@
 
 /* Tablettes */
 @media (max-width: 1024px) {
-  .documents-table-view__container {
-    grid-template-columns: 300px 1fr;
+  .documents-table-view__table {
+    height: 500px;
+    padding: 2rem;
+    transform: rotateX(20deg);
+  }
+
+  .documents-table-view__cards-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
 
-  .documents-table-view__cards {
-    padding: 1.25rem;
+  .document-card {
+    width: 180px;
+    height: 200px;
   }
 
   .documents-table-view__content {
@@ -347,47 +411,38 @@
 @media (max-width: 768px) {
   .documents-table-view {
     padding: 1rem;
+    perspective: 1000px;
   }
 
-  .documents-table-view__container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .documents-table-view__cards {
-    position: relative;
-    top: 0;
-    max-height: none;
-    margin-bottom: 1rem;
+  .documents-table-view__table {
+    height: auto;
+    padding: 1.5rem;
+    transform: rotateX(10deg);
   }
 
   .documents-table-view__cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .document-card {
+    width: 140px;
+    height: 160px;
     padding: 1rem;
   }
 
   .document-card__icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
   }
 
   .document-card__title {
-    font-size: 1rem;
-  }
-
-  .document-card__summary {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .documents-table-view__content {
     padding: 1.5rem;
-    min-height: 400px;
-    max-height: none;
+    min-height: 300px;
+    max-height: 500px;
   }
 
   .document-content__header {
@@ -415,8 +470,10 @@
     grid-template-columns: 1fr;
   }
 
-  .document-card__summary {
-    display: none;
+  .document-card {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
   }
 }
 
@@ -424,24 +481,20 @@
    SCROLLBAR PERSONNALISÉE
    ============================================ */
 
-.documents-table-view__cards::-webkit-scrollbar,
 .documents-table-view__content::-webkit-scrollbar {
   width: 8px;
 }
 
-.documents-table-view__cards::-webkit-scrollbar-track,
 .documents-table-view__content::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 10px;
 }
 
-.documents-table-view__cards::-webkit-scrollbar-thumb,
 .documents-table-view__content::-webkit-scrollbar-thumb {
   background: #cbd5e0;
   border-radius: 10px;
 }
 
-.documents-table-view__cards::-webkit-scrollbar-thumb:hover,
 .documents-table-view__content::-webkit-scrollbar-thumb:hover {
   background: #a0aec0;
 }
