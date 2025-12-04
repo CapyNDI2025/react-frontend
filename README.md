@@ -60,37 +60,15 @@ code/
 
 2. Lance les services :
    ```bash
-   docker-compose up --build
+   docker-compose up dev--build
    ```
   - Mode dev : `http://localhost:5173`
 
-> Docker est obligatoire pour lancer le projet : les commandes ci-dessous se contentent de lister les options Docker (le projet n'est pas prévu pour un run local hors Docker dans la doc actuelle).
+### Mise en prod
 
-
-### Commandes Docker
-
-- `docker-compose up` : Lance le service `app`
-- `docker compose exec app npm run build:host` : Build et peuple `./build` sur l'hôte
-- (optionnel) `npx http-server build -p 5500` : Preview local sans Docker
-
- 
-
-### Si tu ouvres `build/index.html` avec Live Preview et tu as des erreurs
-
-Tu peux voir des erreurs comme :
-
-- Refused to apply style ... because its MIME type ('text/html') is not a supported stylesheet MIME type
-- Failed to load resource: the server responded with a status of 404 (Not Found)
-
-Causa commune — l'HTML de `index.html` référence `/assets/xxx` (chemin absolu) mais ton serveur de preview ne sert pas `build` comme racine, donc les requêtes vers `/assets/...` retournent `index.html` (HTML) au lieu des fichiers statiques.
-
-Solutions rapides :
-
-
-
-### Commandes Docker
-- `docker-compose up` : Lance le service `app`
-- `docker exec -it app npm run build:host` : Build et peuple `./build` sur l'hôte
+* ``docker compose up build --build -d``
+* ``git checkout prod``
+* ``docker compose run exporter``
 
 ### Configuration API
 Modifie `code/.env` pour définir l'URL de l'API :
