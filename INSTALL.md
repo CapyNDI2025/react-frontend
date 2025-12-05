@@ -60,6 +60,13 @@ Cette méthode garantit un environnement isolé et identique pour tous les déve
     ```
     Accessible sur : [http://localhost:8080](http://localhost:8080)
 
+## Accès au Chatbot
+
+Le module de débat avec l'IA est accessible directement via l'URL suivante :
+*   **URL** : [http://localhost:5173/chatbot](http://localhost:5173/chatbot)
+
+Vous pouvez également y accéder via la navigation principale de l'application.
+
 ## Structure du Projet
 
 *   `code/` : Contient tout le code source de l'application React.
