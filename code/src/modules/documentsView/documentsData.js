@@ -14,7 +14,7 @@ export const documentsData = [
     id: 1,
     title: "Matériel & équipements",
     summary: "Réemploi et prolongement de la durée de vie du matériel",
-    icon: "💻",
+    iconName: "computer",
     content: `
       <h2>Matériel & équipements</h2>
       <p class="lead">Pourquoi on jette des ordinateurs qui marchent encore ?</p>
@@ -180,7 +180,7 @@ export const documentsData = [
     id: 2,
     title: "Logiciels & licences",
     summary: "Éviter le verrouillage éducatif et promouvoir le libre",
-    icon: "📦",
+    iconName: "software",
     content: `
       <h2>Logiciels & licences</h2>
       <p class="lead">Quand le "gratuit" coûte très cher</p>
@@ -426,7 +426,7 @@ export const documentsData = [
     id: 4,
     title: "Données & vie privée",
     summary: "Souveraineté numérique et protection des données",
-    icon: "🛡️",
+    iconName: "shield",
     content: `
       <h2>Données & vie privée</h2>
       <p class="lead">Reprendre le contrôle de nos données éducatives</p>
@@ -720,7 +720,7 @@ export const documentsData = [
     id: 3,
     title: "Accompagnement & formation",
     summary: "Former pour une transition numérique réussie",
-    icon: "🎓",
+    iconName: "graduation",
     content: `
       <h2>Accompagnement & formation</h2>
       <p class="lead">La clé d'une transition numérique durable et autonome</p>
@@ -1046,7 +1046,7 @@ export const documentsData = [
     id: 5,
     title: "La démarche NIRD",
     summary: "Numérique Inclusif, Responsable et Durable",
-    icon: "🌱",
+    iconName: "seedling",
     content: `
       <h2>La démarche NIRD</h2>
       <p class="lead">Numérique Inclusif, Responsable et Durable - Un modèle d'avenir pour l'éducation</p>

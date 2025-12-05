@@ -10,7 +10,7 @@ const AppRoutes = () => {
       <Route path="/" element={<PagHome />} />
       <Route path="/godot" element={<PagGodot />} />
       <Route path="*" element={<div>404</div>} />
-      <Route path="/ressource" element={ <DocumentsTableView />} />
+      <Route path="/resources" element={ <DocumentsTableView />} />
     </Routes>
   )
 }
