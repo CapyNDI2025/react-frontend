@@ -1,0 +1,845 @@
+/**
+ * Styles pour le module DocumentsTableView
+ * 
+ * Ce fichier contient tous les styles nécessaires au module
+ * de manière isolée et réutilisable
+ */
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+
+.documents-table-view {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  padding: 2rem;
+  perspective: 1500px;
+}
+
+.documents-table-view__container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* ============================================
+   ZONE DE LA TABLE 3D
+   ============================================ */
+
+.documents-table-view__table-container {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.documents-table-view__cards-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.documents-table-view__header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.documents-table-view__cards-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ecf0f1;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+.documents-table-view__cards-subtitle {
+  font-size: 1rem;
+  color: #bdc3c7;
+  margin: 0;
+  text-align: left;
+}
+
+.documents-table-view__reset-button {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.documents-table-view__reset-button:hover {
+  background: linear-gradient(135deg, #2980b9, #21618c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.documents-table-view__reset-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table 3D en perspective */
+.documents-table-view__table {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+  background: linear-gradient(145deg, #8B4513, #A0522D);
+  border-radius: 20px;
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    inset 0 2px 10px rgba(255, 255, 255, 0.1),
+    inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+  transform: rotateX(25deg) rotateZ(0deg);
+  transform-style: preserve-3d;
+  padding: 3rem;
+  border: 8px solid #654321;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Effet de texture bois */
+.documents-table-view__table::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Grille de documents disposés autour du centre */
+.documents-table-view__cards-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.documents-table-view__cards-grid > * {
+  pointer-events: all;
+}
+
+/* ============================================
+   CARTES DE DOCUMENTS (Style physique varié)
+   ============================================ */
+
+.document-card {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 180px;
+  height: 200px;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.2rem;
+}
+
+/* État pendant le drag */
+.document-card--dragging {
+  opacity: 0.7;
+  cursor: grabbing !important;
+  z-index: 100;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+  transition: none !important;
+}
+
+/* Maintenir les pseudo-éléments visibles pendant le drag */
+.document-card--dragging::after,
+.document-card--dragging::before {
+  opacity: 1 !important;
+}
+
+/* Document avec position personnalisée */
+.document-card--custom-position {
+  position: absolute !important;
+  transition: left 0.15s ease-out, top 0.15s ease-out;
+  will-change: left, top;
+}
+
+.document-card {
+  cursor: grab;
+}
+
+.document-card:active {
+  cursor: grabbing;
+}
+
+/* Document 1 - Rapport officiel (format A4 vertical) */
+.document-card--style-0 {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  border: 2px solid #2c3e50;
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  top: 8%;
+  left: 8%;
+  transform: translateZ(5px) rotate(-5deg);
+  width: 160px;
+  height: 220px;
+}
+
+.document-card--style-0::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, #2c3e50, transparent);
+  opacity: 0.1;
+}
+
+/* Document 2 - Note autocollante (carré) */
+.document-card--style-1 {
+  background: linear-gradient(135deg, #fff9c4, #fff59d);
+  border: none;
+  border-radius: 2px;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+  top: 5%;
+  right: 10%;
+  transform: translateZ(8px) rotate(8deg);
+  width: 180px;
+  height: 180px;
+}
+
+/* Document 3 - Carte plastifiée (format carte de visite) */
+.document-card--style-2 {
+  background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+  border: 3px solid #1976d2;
+  border-radius: 12px;
+  box-shadow: 
+    0 5px 15px rgba(25, 118, 210, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  bottom: 8%;
+  left: 5%;
+  transform: translateZ(10px) rotate(-3deg);
+  width: 240px;
+  height: 150px;
+}
+
+.document-card--style-2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+/* Document 4 - Papier ancien (parchemin étroit) */
+.document-card--style-3 {
+  background: linear-gradient(to bottom, #f4e7d7 0%, #e8d4b8 100%);
+  border: 1px solid #8b7355;
+  border-radius: 2px;
+  box-shadow: 
+    0 6px 15px rgba(0, 0, 0, 0.3),
+    inset 0 0 50px rgba(139, 115, 85, 0.1);
+  top: 38%;
+  right: 3%;
+  bottom: auto;
+  left: auto;
+  transform: translateZ(12px) rotate(-6deg);
+  width: 180px;
+  height: 240px;
+}
+
+.document-card--style-3::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 12px;
+  right: 12px;
+  bottom: 25px;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 22px,
+    rgba(139, 115, 85, 0.25) 22px,
+    rgba(139, 115, 85, 0.25) 23px
+  );
+  border-left: 2px solid rgba(139, 115, 85, 0.3);
+  pointer-events: none;
+}
+
+/* Document 5 - Brochure moderne (format dépliant) */
+.document-card--style-4 {
+  background: linear-gradient(to right, #2e7d32 0%, #2e7d32 30%, #f1f8e9 30%, #f1f8e9 100%);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    inset -1px 0 0 rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  top: 55%;
+  left: 3%;
+  transform: translateY(-50%) translateZ(15px);
+  width: 260px;
+  height: 160px;
+}
+
+.document-card--style-4::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(56, 142, 60, 0.2), transparent);
+  border-radius: 8px 0 0 8px;
+}
+
+/* États hover et sélectionné pour tous */
+.document-card:hover {
+  z-index: 30;
+  cursor: pointer;
+}
+
+.document-card--style-0:hover { 
+  box-shadow: 0 12px 35px rgba(44, 62, 80, 0.5); 
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+.document-card--style-0:hover::after { opacity: 1; }
+.document-card--style-1:hover { 
+  box-shadow: 0 12px 35px rgba(255, 235, 59, 0.6); 
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+.document-card--style-1:hover::after { opacity: 1; }
+.document-card--style-2:hover { 
+  box-shadow: 0 12px 35px rgba(25, 118, 210, 0.6); 
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+.document-card--style-2:hover::before { opacity: 1; }
+.document-card--style-3:hover { 
+  box-shadow: 
+    0 12px 35px rgba(184, 134, 11, 0.5),
+    inset 0 0 50px rgba(139, 115, 85, 0.1);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+.document-card--style-3:hover::before { opacity: 1; }
+.document-card--style-4:hover { 
+  box-shadow: 0 12px 35px rgba(56, 142, 60, 0.6); 
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+.document-card--style-4:hover::before { opacity: 1; }
+
+/* Document sélectionné - indicateur subtil uniquement */
+.document-card--selected {
+  filter: brightness(1.05);
+  z-index: 10;
+  outline: 3px solid rgba(74, 144, 226, 0.8);
+  outline-offset: 2px;
+  animation: selectedGlow 2s ease-in-out infinite;
+}
+
+@keyframes selectedGlow {
+  0%, 100% { 
+    outline-color: rgba(74, 144, 226, 0.6);
+  }
+  50% { 
+    outline-color: rgba(74, 144, 226, 0.9);
+  }
+}
+
+.document-card__icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.document-card:hover .document-card__icon {
+  transform: scale(1.1);
+}
+
+.document-card__title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.document-card--style-1 .document-card__title {
+  color: #f57f17;
+}
+
+.document-card--style-2 .document-card__title {
+  color: #1565c0;
+}
+
+.document-card--style-3 .document-card__title {
+  color: #6d4c41;
+}
+
+.document-card--style-4 .document-card__title {
+  color: #2e7d32;
+}
+
+.document-card__summary {
+  display: none;
+}
+
+.document-card:focus {
+  outline: 3px solid #3498db;
+  outline-offset: 4px;
+  z-index: 30;
+}
+
+/* ============================================
+   ZONE DE CONTENU AU CENTRE
+   ============================================ */
+
+.documents-table-view__content-wrapper {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 500px;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  pointer-events: none; /* Permettre le drag par-dessus */
+}
+
+.documents-table-view__content-wrapper > * {
+  pointer-events: auto; /* Réactiver les interactions pour le contenu */
+}
+
+/* Zone interdite pour le drop */
+.documents-table-view__content-wrapper--no-drop {
+  animation: noDrop 0.3s ease-in-out;
+}
+
+.documents-table-view__content-wrapper--no-drop::before {
+  content: '🚫 Zone de lecture';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(30px);
+  background: rgba(231, 76, 60, 0.95);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+@keyframes noDrop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.documents-table-view__content {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  min-height: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+  animation: contentFadeIn 0.4s ease-out;
+  border: 3px solid #95a5a6;
+  transform: translateZ(20px);
+}
+
+/* Scrollbar personnalisée */
+.documents-table-view__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.documents-table-view__content::-webkit-scrollbar-track {
+  background: rgba(149, 165, 166, 0.1);
+  border-radius: 10px;
+  margin: 8px 0;
+}
+
+.documents-table-view__content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #95a5a6, #7f8c8d);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.documents-table-view__content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7f8c8d, #5d6d7e);
+}
+
+/* Pour Firefox */
+.documents-table-view__content {
+  scrollbar-width: thin;
+  scrollbar-color: #95a5a6 rgba(149, 165, 166, 0.1);
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.document-content {
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.document-content--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
+/* Désactiver l'overflow sur le parent quand vide */
+.documents-table-view__content:has(.document-content--empty) {
+  overflow-y: hidden;
+}
+
+.document-content__placeholder {
+  text-align: center;
+  color: #a0aec0;
+}
+
+.document-content__placeholder-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.document-content__placeholder-text {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.document-content__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #e2e8f0;
+}
+
+.document-content__icon {
+  font-size: 3rem;
+  animation: iconRotate 0.6s ease-out;
+}
+
+@keyframes iconRotate {
+  from {
+    transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.document-content__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.document-content__body {
+  color: #4a5568;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* Styles pour le contenu HTML */
+.document-content__body h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.document-content__body h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.document-content__body p {
+  margin: 0 0 1rem 0;
+  text-align: justify;
+}
+
+.document-content__body ul,
+.document-content__body ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.document-content__body li {
+  margin: 0.5rem 0;
+}
+
+.document-content__body strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.document-content__body code {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #667eea;
+}
+
+.document-content__body pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.document-content__body pre code {
+  background: transparent;
+  border: none;
+  color: #e2e8f0;
+  padding: 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablettes */
+@media (max-width: 1024px) {
+  .documents-table-view__table {
+    min-height: 600px;
+    padding: 2rem;
+    transform: rotateX(20deg);
+  }
+
+  .documents-table-view__content-wrapper {
+    max-width: 500px;
+  }
+
+  .documents-table-view__content {
+    padding: 1.5rem;
+    min-height: 350px;
+    max-height: 450px;
+  }
+
+  .document-card {
+    width: 160px;
+    height: 180px;
+  }
+
+  .document-card--style-0 { top: 8%; left: 3%; }
+  .document-card--style-1 { top: 6%; right: 3%; }
+  .document-card--style-2 { bottom: 12%; left: 5%; }
+  .document-card--style-3 { top: 38%; right: 3%; bottom: auto; left: auto; }
+  .document-card--style-4 { top: 45%; left: 1%; }
+}
+
+/* Mobiles et petites tablettes */
+@media (max-width: 768px) {
+  .documents-table-view {
+    padding: 1rem;
+    perspective: 1000px;
+  }
+
+  .documents-table-view__table {
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    transform: rotateX(10deg);
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .documents-table-view__cards-grid {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .document-card {
+    position: static !important;
+    width: 140px;
+    height: 160px;
+    padding: 1rem;
+    transform: translateZ(5px) rotate(0deg) !important;
+  }
+
+  .document-card:hover {
+    transform: translateZ(20px) scale(1.05) !important;
+  }
+
+  .document-card--selected {
+    transform: translateZ(30px) scale(1.1) !important;
+  }
+
+  .document-card__icon {
+    font-size: 2.5rem;
+  }
+
+  .document-card__title {
+    font-size: 0.7rem;
+  }
+
+  .documents-table-view__content-wrapper {
+    max-width: 100%;
+  }
+
+  .documents-table-view__content {
+    padding: 1.5rem;
+    min-height: 300px;
+    max-height: 400px;
+    transform: translateZ(10px);
+  }
+
+  .document-content__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .document-content__title {
+    font-size: 1.5rem;
+  }
+
+  .document-content__body h2 {
+    font-size: 1.375rem;
+  }
+
+  .document-content__body h3 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+  .document-card {
+    width: 120px;
+    height: 140px;
+  }
+  
+  .document-card__icon {
+    font-size: 2rem;
+  }
+  
+  .document-card__title {
+    font-size: 0.65rem;
+  }
+}
+
+/* ============================================
+   SCROLLBAR PERSONNALISÉE
+   ============================================ */
+
+.documents-table-view__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.documents-table-view__content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.documents-table-view__content::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+.documents-table-view__content::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* ============================================
+   ANIMATIONS D'ACCESSIBILITÉ
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
