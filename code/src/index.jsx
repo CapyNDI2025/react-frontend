@@ -5,13 +5,16 @@ import store from './lib/store/store.js'
 import App from './pages/App'
 import { LanguageProvider } from './i18n/LanguageContext'
 import './styles/globals.css'
+import AppWrapper from './components/SnakeGame/AppWrapper'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <Provider store={store}>
     <LanguageProvider>
-      <App />
+      <AppWrapper>
+        <App />
+      </AppWrapper>
     </LanguageProvider>
   </Provider>
 )
