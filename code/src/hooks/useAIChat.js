@@ -24,7 +24,6 @@ export const useAIChat = () => {
     setDebatePaused
   } = useChatStore();
   
-  // Use Audio Context safely (it might be null if used outside provider, but here it should be fine)
   const audio = useAudio();
   const playClick = audio ? audio.playClick : () => {};
 
@@ -95,7 +94,6 @@ export const useAIChat = () => {
 
   const resumeDebate = () => {
     setDebatePaused(false);
-    // Trigger will happen automatically via useEffect if status is idle
   };
 
   const stopGeneration = () => {
@@ -242,7 +240,7 @@ export const useAIChat = () => {
       setStatus('idle');
 
     } catch (error) {
-      if (error.name === 'AbortError') {
+      if (error.name === 'AbortError' || error.message === 'Request was aborted.') {
         console.log('Generation stopped by user');
         setStatus('idle');
         return;
@@ -250,6 +248,12 @@ export const useAIChat = () => {
       console.error("Erreur API:", error);
       setStatus('error');
       addMessage({ role: 'assistant', content: `Erreur: ${error.message}` });
+      
+      if (isDebateMode && !isDebatePaused) {
+          setDebatePaused(true);
+          addMessage({ role: 'system', content: "Le débat a été mis en pause suite à une erreur technique." });
+      }
+
       setTimeout(() => setStatus('idle'), 3000);
     } finally {
       abortControllerRef.current = null;
