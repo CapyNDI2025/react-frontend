@@ -94,7 +94,7 @@ export const AudioProvider = ({ children }) => {
 
     if (personality === 'nullpointer') {
       utterance.pitch = 0.1 + Math.random() * 1.9;
-      utterance.rate = 0.2 + Math.random() * 1.8;
+      utterance.rate = 0.2 + Math.random() * 1.2;
     } else {
       utterance.pitch = 0.5;
       utterance.rate = 0.8;
