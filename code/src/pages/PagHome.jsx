@@ -223,6 +223,18 @@ const BlockLink = styled(Link)`
   padding: 24px;
 `
 
+const ExternalBlockLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+`
+
 const BlockTitle = styled(motion.h2)`
   font-size: ${props => props.$large ? '3.5rem' : '1.4rem'};
   font-weight: ${props => props.$large ? '900' : '700'};
@@ -456,13 +468,13 @@ const PagHome = () => {
 
         {/* NIRD */}
         <NirdBlock variants={blockVariants} whileHover={hoverVariants}>
-          <BlockLink to="/nird">
+          <ExternalBlockLink href="https://nird.forge.apps.education.fr/" target="_blank" rel="noopener noreferrer">
             <IconWrapper whileHover={iconHover}>
               <RiLeafLine />
             </IconWrapper>
             <BlockTitle>NIRD</BlockTitle>
             <BlockSubtitle>Responsable & Durable</BlockSubtitle>
-          </BlockLink>
+          </ExternalBlockLink>
         </NirdBlock>
 
         {/* Dépendances */}
