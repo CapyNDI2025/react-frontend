@@ -125,7 +125,25 @@ export const useAIChat = () => {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'fr-FR'; 
+    
+    // Configuration de la voix (similaire à AudioContext)
+    const voices = window.speechSynthesis.getVoices();
+    const frVoice = voices.find(v => v.lang.startsWith('fr')) || voices[0];
+    if (frVoice) {
+        utterance.voice = frVoice;
+        utterance.lang = frVoice.lang;
+    } else {
+        utterance.lang = 'fr-FR';
+    }
+
+    // Application des effets de personnalité
+    if (currentPersonality === 'nullpointer') {
+      utterance.pitch = 0.1 + Math.random() * 1.9;
+      utterance.rate = 0.2 + Math.random() * 1.2;
+    } else {
+      utterance.pitch = 0.5;
+      utterance.rate = 0.8;
+    }
     
     utterance.onstart = () => {
       setStatus('speaking');
