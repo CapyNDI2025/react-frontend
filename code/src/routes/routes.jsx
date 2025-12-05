@@ -5,6 +5,7 @@ import PagCounters from '../pages/PagCounters'
 import PagCubes from '../pages/PagCubes'
 import PagCharacter from '../pages/PagCharacter'
 import PagEarth from '../pages/PagEarth'
+import DocumentsTableView from '../modules/documentsView/DocumentsTableView'
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
       <Route path="/character" element={<PagCharacter />} />
       <Route path="/earth" element={<PagEarth />} />
       <Route path="*" element={<div>404</div>} />
+      <Route path="/ressource" element={ <DocumentsTableView />} />
     </Routes>
   )
 }

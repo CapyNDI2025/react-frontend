@@ -39,7 +39,7 @@ const App = () => {
           <AppRoutes />
           
           {/* ======== TEST: Module DocumentsTableView ======== */}
-          <DocumentsTableView />
+          
           {/* ================================================== */}
         </AppContainer>
       </Router>
