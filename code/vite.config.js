@@ -10,6 +10,11 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     strictPort: true,
+    // Headers pour permettre SharedArrayBuffer (requis pour Godot) même en HTTP
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+    },
   },
   optimizeDeps: {
     include: ['@react-three/postprocessing']
