@@ -7,6 +7,7 @@ import PagCredits from '../pages/PagCredits'
 import DocumentsTableView from '../modules/documentsView/DocumentsTableView'
 import PagChatBot from '../pages/PagChatBot'
 import AppWrapper from '../components/SnakeGame/AppWrapper'
+import MarioCapyGame from '../components/MarioCapyGame'
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
       <Route path="/godot" element={<PagGodot />} />
       <Route path="/about" element={<PagAbout />} />
       <Route path="/credits" element={<PagCredits />} />
+      <Route path="/mario" element={<MarioCapyGame />} />
       <Route path="*" element={<div>404</div>} />
       <Route path="/resources" element={ <DocumentsTableView />} />
       <Route path="/chatbot" element={<PagChatBot />} />
