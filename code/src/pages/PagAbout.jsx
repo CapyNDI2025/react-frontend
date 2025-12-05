@@ -191,7 +191,9 @@ const ContentOverlay = styled(motion.div)`
   }
 `
 
-const BackButton = styled(motion(Link))`
+const MotionLink = motion.create(Link)
+
+const BackButton = styled(MotionLink)`
   position: fixed;
   top: 24px;
   left: 24px;
