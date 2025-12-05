@@ -500,7 +500,7 @@ const PagHome = () => {
 
         {/* Expérience 3D */}
         <Experience3DBlock variants={blockVariants} whileHover={hoverVariants}>
-          <BlockLink to="/experience3d">
+          <BlockLink to="/godot">
             <IconWrapper whileHover={iconHover}>
               <RiGamepadLine />
             </IconWrapper>
