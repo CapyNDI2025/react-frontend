@@ -523,13 +523,13 @@ const PagHome = () => {
 
         {/* Quiz */}
         <QuizBlock variants={blockVariants} whileHover={hoverVariants}>
-          <BlockLink to="/quiz">
+          <ExternalBlockLink href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
             <IconWrapper whileHover={iconHover}>
               <RiQuestionnaireLine />
             </IconWrapper>
             <BlockTitle>Quiz</BlockTitle>
             <BlockSubtitle>Testez-vous</BlockSubtitle>
-          </BlockLink>
+          </ExternalBlockLink>
         </QuizBlock>
 
         {/* Resources */}
