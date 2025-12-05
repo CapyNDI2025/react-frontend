@@ -188,7 +188,7 @@ export const documentsData = [
     id: 2,
     title: "Logiciels & licences",
     summary: "Éviter le verrouillage éducatif et promouvoir le libre",
-    icon: "🔓",
+    icon: "📦",
     content: `
       <h2>Logiciels & licences</h2>
       <p class="lead">Le piège du "gratuit" éducatif et l'enjeu de la souveraineté numérique</p>
@@ -438,7 +438,7 @@ export const documentsData = [
     id: 3,
     title: "Données & vie privée",
     summary: "Souveraineté numérique et protection des données",
-    icon: "🔒",
+    icon: "🛡️",
     content: `
       <h2>Données & vie privée</h2>
       <p class="lead">Reprendre le contrôle de nos données éducatives</p>
