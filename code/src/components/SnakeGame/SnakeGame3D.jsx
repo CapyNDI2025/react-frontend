@@ -1377,6 +1377,7 @@ const GameScene = ({ mode, setScore, setGameOver, gameOver, setCountdown, countd
     const [prevSnake, setPrevSnake] = useState(INITIAL_SNAKE);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
     const [nextDirection, setNextDirection] = useState(INITIAL_DIRECTION);
+    const directionQueue = useRef([]);
     const [levelTiles, setLevelTiles] = useState([]);
     const [burrows, setBurrows] = useState([]);
     const [food, setFood] = useState({ x: 0, y: 0 });
@@ -1426,51 +1427,46 @@ const GameScene = ({ mode, setScore, setGameOver, gameOver, setCountdown, countd
             if (countdown > 0 || isHit) return; // Block input during countdown OR if hit
 
             let newDir = null;
+            
+            // Use the last queued direction for validation to allow buffering (ZigZag fix)
+            const lastDir = directionQueue.current.length > 0 
+                ? directionQueue.current[directionQueue.current.length - 1] 
+                : nextDirection;
 
             if (mode === MODES.CAPY_FPS) {
                 // Relative Turning Controls
-                // ArrowLeft -> Turn Left (90 degrees Counter-Clockwise)
-                // ArrowRight -> Turn Right (90 degrees Clockwise)
-                // ArrowUp/Down -> No effect
-
-                // Current direction is 'direction' (or should we use nextDirection to allow buffering? 
-                // usually snake games use current direction for validity checks).
-                // Since we are just turning 90 degrees, it's always "valid" relative to current facing 
-                // (you can't do a 180 turn with a 90 degree turn).
-
-                const currentDir = direction; // Use current established direction
+                const currentDir = lastDir;
 
                 switch (e.key) {
                     case 'ArrowLeft':
-                        // Turn Left: (x, y) -> (y, -x) wait, standard math:
-                        // (1, 0) -> (0, 1) [Up] -> (-1, 0) [Left] -> (0, -1) [Down]
-                        // x' = -y, y' = x
                         newDir = { x: -currentDir.y, y: currentDir.x };
                         break;
                     case 'ArrowRight':
-                        // Turn Right: (x, y) -> (0, -1) [Down]
-                        // x' = y, y' = -x
                         newDir = { x: currentDir.y, y: -currentDir.x };
                         break;
                 }
             } else {
                 // Standard Controls
                 switch (e.key) {
-                    case 'ArrowUp': if (direction.y !== -1) newDir = { x: 0, y: 1 }; break;
-                    case 'ArrowDown': if (direction.y !== 1) newDir = { x: 0, y: -1 }; break;
-                    case 'ArrowLeft': if (direction.x !== 1) newDir = { x: -1, y: 0 }; break;
-                    case 'ArrowRight': if (direction.x !== -1) newDir = { x: 1, y: 0 }; break;
+                    case 'ArrowUp': if (lastDir.y !== -1) newDir = { x: 0, y: 1 }; break;
+                    case 'ArrowDown': if (lastDir.y !== 1) newDir = { x: 0, y: -1 }; break;
+                    case 'ArrowLeft': if (lastDir.x !== 1) newDir = { x: -1, y: 0 }; break;
+                    case 'ArrowRight': if (lastDir.x !== -1) newDir = { x: 1, y: 0 }; break;
                 }
             }
 
             if (newDir) {
-                setNextDirection(newDir);
-                playSound('step', isSfxMuted, sfxVolume);
+                // Limit queue size to prevent infinite buffering
+                if (directionQueue.current.length < 3) {
+                    directionQueue.current.push(newDir);
+                    setNextDirection(newDir); // Update state for consistency
+                    playSound('step', isSfxMuted, sfxVolume);
+                }
             }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [direction, countdown, isHit, mode]);
+    }, [direction, nextDirection, countdown, isHit, mode]);
 
     useFrame((state) => {
         if (!mode || gameOver || countdown > 0) return;
@@ -1495,13 +1491,21 @@ const GameScene = ({ mode, setScore, setGameOver, gameOver, setCountdown, countd
         if (time - lastTick > tickRate) {
             setLastTick(time);
             setProgress(0);
-            setDirection(nextDirection);
+
+            // Consume from queue if available
+            let moveDir = nextDirection;
+            if (directionQueue.current.length > 0) {
+                moveDir = directionQueue.current.shift();
+                setNextDirection(moveDir); // Sync state
+            }
+
+            setDirection(moveDir);
             setPrevSnake([...snake]);
 
             setSnake((currentSnake) => {
                 const newHead = {
-                    x: currentSnake[0].x + nextDirection.x,
-                    y: currentSnake[0].y + nextDirection.y,
+                    x: currentSnake[0].x + moveDir.x,
+                    y: currentSnake[0].y + moveDir.y,
                 };
 
                 if (newHead.x < -GRID_SIZE / 2 || newHead.x >= GRID_SIZE / 2 ||
