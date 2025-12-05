@@ -56,6 +56,8 @@ export const useAIChat = () => {
       if (debateTimeoutRef.current) clearTimeout(debateTimeoutRef.current);
     };
   }, [isDebateMode, isDebatePaused, status, messages]);
+
+  // Change de personnalité active et déclenche automatiquement la réponse suivante lors d'un débat
   const triggerDebateTurn = (lastContent) => {
     const nextPersonality = currentPersonality === 'abysse' ? 'nullpointer' : 'abysse';
     setPersonality(nextPersonality);
@@ -65,6 +67,7 @@ export const useAIChat = () => {
     handleSendMessage(null, prompt);
   };
 
+  // Active ou désactive le mode débat, en lançant la conversation initiale ou en nettoyant l'interface
   const toggleDebateMode = () => {
     const newMode = !isDebateMode;
     
@@ -86,16 +89,19 @@ export const useAIChat = () => {
     }
   };
 
+  // Met le débat en pause temporaire sans effacer l'historique des messages
   const pauseDebate = () => {
     setDebatePaused(true);
     if (debateTimeoutRef.current) clearTimeout(debateTimeoutRef.current);
     stopGeneration();
   };
 
+  // Relance le débat là où il s'était arrêté après une pause
   const resumeDebate = () => {
     setDebatePaused(false);
   };
 
+  // Interrompt immédiatement la génération de texte en cours et annule la requête API
   const stopGeneration = () => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
@@ -106,6 +112,7 @@ export const useAIChat = () => {
     }
   };
 
+  // Utilise la synthèse vocale du navigateur pour lire le texte fourni à voix haute
   const speakText = (text, index) => {
     if (!window.speechSynthesis) return;
     
@@ -136,6 +143,7 @@ export const useAIChat = () => {
     window.speechSynthesis.speak(utterance);
   };
 
+  // Envoie l'historique de la conversation à l'API DeepSeek pour générer une réponse intelligente.
   const callRealLLM = async (messagesHistory) => {
     setStatus('thinking');
     
@@ -260,6 +268,7 @@ export const useAIChat = () => {
     }
   };
 
+  // Gère l'envoi d'un message par l'utilisateur, joue un son de clic et initie l'appel à l'IA
   const handleSendMessage = async (e, overridePrompt = null) => {
     if (e) e.preventDefault();
     
