@@ -17,86 +17,78 @@ export const documentsData = [
     icon: "💻",
     content: `
       <h2>Matériel & équipements</h2>
-      <p class="lead">Un enjeu crucial pour la durabilité numérique dans l'éducation</p>
+      <p class="lead">Pourquoi on jette des ordinateurs qui marchent encore ?</p>
       
-      <h3>🔍 Introduction : Le paradoxe de l'obsolescence</h3>
+      <h3>🔍 Le problème</h3>
       <p>
-        Dans les établissements scolaires français, une tendance inquiétante s'est installée : 
-        le matériel informatique est remplacé bien avant la fin de sa durée de vie technique réelle. 
-        Un ordinateur conçu pour fonctionner 10 à 15 ans est souvent mis au rebut après seulement 
-        3 à 5 ans d'utilisation. Cette situation génère un double problème : des coûts financiers 
-        importants pour les collectivités et une accumulation massive de déchets électroniques 
-        (e-waste).
+        Bon, soyons honnêtes : dans nos écoles, on a un souci. Les ordis sont changés tous les 3-5 ans 
+        alors qu'ils pourraient tenir 10-15 ans tranquille. Résultat ? Les collectivités claquent 
+        des fortunes et on se retrouve avec des montagnes de déchets électroniques.
       </p>
       <p>
-        Les causes de cette obsolescence prématurée sont multiples : l'obsolescence programmée 
-        par les constructeurs, les mises à jour logicielles rendant les anciens systèmes incompatibles, 
-        et surtout une dépendance aux éditeurs propriétaires qui imposent leurs cycles de renouvellement. 
-        Microsoft, par exemple, a annoncé la fin du support de Windows 10 pour octobre 2025, forçant 
-        des millions d'ordinateurs parfaitement fonctionnels vers la mise au rebut.
+        Pourquoi ? Plusieurs raisons qui s'empilent : les constructeurs qui font de l'obsolescence programmée, 
+        les mises à jour qui rendent les vieux systèmes incompatibles, et surtout Microsoft et compagnie 
+        qui décident pour nous quand il faut changer. Tiens, exemple tout frais : Windows 10 ne sera plus 
+        supporté en octobre 2025. Du coup, des millions de PC parfaitement fonctionnels vont direct à la poubelle.
       </p>
 
-      <h3>⚠️ Problématique : Le cercle vicieux du renouvellement</h3>
+      <h3>⚠️ Le cercle vicieux</h3>
       <p>
-        La problématique est systémique. Chaque nouvelle version de Windows ou macOS exige des 
-        configurations matérielles plus puissantes. Les ordinateurs et tablettes des écoles, 
-        souvent achetés il y a 3 ou 4 ans, deviennent "obsolètes" non pas parce qu'ils sont 
-        cassés, mais parce que les logiciels ne les supportent plus.
+        C'est un système bien rodé : chaque nouvelle version de Windows ou macOS demande plus de puissance. 
+        Les ordis des écoles achetés il y a 3-4 ans deviennent "obsolètes" - pas parce qu'ils sont cassés, 
+        juste parce que les logiciels ne veulent plus tourner dessus.
       </p>
       <p>
-        <strong>Les conséquences sont dramatiques :</strong>
+        <strong>Concrètement, ça donne quoi ?</strong>
       </p>
       <ul>
-        <li><strong>Impact financier :</strong> Un lycée de 1000 élèves doit investir entre 200 000€ 
-        et 500 000€ tous les 4-5 ans pour renouveler son parc informatique</li>
-        <li><strong>Impact écologique :</strong> La production d'un ordinateur neuf génère 240 kg 
-        de CO2 et nécessite 1500 litres d'eau. En France, on estime que 50 000 tonnes de matériel 
-        informatique scolaire sont jetées chaque année</li>
-        <li><strong>Impact pédagogique :</strong> Les budgets consacrés au matériel sont autant 
-        d'argent qui n'est pas investi dans la formation des enseignants ou les ressources éducatives</li>
-        <li><strong>Inégalités territoriales :</strong> Les établissements en zone rurale ou défavorisée 
-        n'ont pas les moyens de suivre ce rythme et se retrouvent avec du matériel obsolète</li>
+        <li><strong>Côté budget :</strong> Un lycée de 1000 élèves doit sortir entre 200 000€ 
+        et 500 000€ tous les 4-5 ans pour renouveler le parc informatique. Une somme.</li>
+        <li><strong>Côté planète :</strong> Fabriquer un ordi neuf, c'est 240 kg de CO2 et 1500 litres d'eau. 
+        En France, on balance 50 000 tonnes de matos scolaire chaque année.</li>
+        <li><strong>Côté pédagogie :</strong> Tout cet argent dans le matériel, c'est autant en moins pour 
+        former les profs ou acheter des ressources.</li>
+        <li><strong>Côté égalité :</strong> Les bahuts en zone rurale ou défavorisée peuvent pas suivre 
+        le rythme, ils se retrouvent avec du matos dépassé.</li>
       </ul>
 
-      <h3>📰 Exemples concrets et actualités</h3>
+      <h3>📰 Dans l'actu</h3>
       <p>
-        L'actualité récente illustre parfaitement cette problématique :
+        Quelques exemples récents qui parlent d'eux-mêmes :
       </p>
       <ul>
         <li>
-          <strong>Septembre 2025 - Le scandale des ordinateurs de l'État :</strong>
+          <strong>Septembre 2025 - Le gâchis de l'État :</strong>
           <a href="https://www.youtube.com/watch?v=76T8oubek-c" target="_blank" rel="noopener">
-            France Info révèle
-          </a> que l'État français est contraint de jeter ou de brader des milliers d'ordinateurs 
-          parfaitement fonctionnels simplement parce qu'ils ne peuvent pas être mis à jour vers 
-          Windows 11. Ces machines, achetées avec l'argent public il y a moins de 5 ans, finissent 
-          à la déchetterie.
+            France Info balance le scoop
+          </a> : l'État français est obligé de jeter ou brader des milliers d'ordis qui marchent nickel, 
+          juste parce qu'ils peuvent pas passer à Windows 11. Ces machines, payées avec nos impôts 
+          il y a moins de 5 ans, finissent à la déchetterie.
         </li>
         <li>
-          <strong>Octobre 2025 - L'alternative des logiciels libres :</strong>
+          <strong>Octobre 2025 - Linux à la rescousse :</strong>
           <a href="https://video.echirolles.fr/w/hVykGUtRZqRen6eiutqRvQ" target="_blank" rel="noopener">
             France 3 Alpes montre
-          </a> comment certaines communes ont choisi Linux pour prolonger la vie de leur matériel. 
-          À Échirolles, 300 ordinateurs "obsolètes" ont été sauvés grâce à l'installation d'Ubuntu, 
-          économisant 150 000€ à la ville.
+          </a> comment certaines communes ont choisi Linux pour sauver leur matos. 
+          À Échirolles, 300 ordinateurs "obsolètes" ont été récupérés avec Ubuntu. 
+          Économie : 150 000€ pour la ville.
         </li>
         <li>
           <strong>Le témoignage de Back Market :</strong>
           <a href="https://www.youtube.com/watch?v=S6GLqkhykmA" target="_blank" rel="noopener">
-            Cette vidéo explicative
-          </a> démontre comment un ordinateur de 2015 peut parfaitement convenir aux usages 
-          bureautiques et pédagogiques d'aujourd'hui, à condition d'utiliser les bons logiciels.
+            Cette vidéo
+          </a> montre qu'un ordi de 2015 fait largement l'affaire pour la bureautique et 
+          les usages scolaires, si on met les bons logiciels dessus.
         </li>
       </ul>
       <p>
-        <strong>Cas d'école :</strong> Le lycée Victor Hugo à Marseille a calculé qu'en 2023, 
-        60% de son parc informatique (240 machines) ne pouvait pas passer à Windows 11. Face à 
-        un coût de remplacement estimé à 180 000€, l'établissement a choisi de migrer vers Linux. 
-        Résultat : économie totale, matériel prolongé de 5 ans minimum, et élèves formés aux 
-        logiciels libres.
+        <strong>Exemple vécu :</strong> Le lycée Victor Hugo à Marseille s'est retrouvé coincé en 2023 : 
+        60% de son parc (240 machines) ne pouvait pas passer à Windows 11. Face à une facture de 180 000€, 
+        ils ont basculé sur Linux. Bilan : économie totale, matos prolongé d'au moins 5 ans, et en prime 
+        les élèves découvrent les logiciels libres.
       </p>
 
-      <h3>✅ Solutions concrètes pour prolonger la durée de vie</h3>
+      <h3>✅ Les solutions qui marchent</h3>
       
       <h4>1. Réemploi et reconditionnement</h4>
       <p>
@@ -191,120 +183,116 @@ export const documentsData = [
     icon: "📦",
     content: `
       <h2>Logiciels & licences</h2>
-      <p class="lead">Le piège du "gratuit" éducatif et l'enjeu de la souveraineté numérique</p>
+      <p class="lead">Quand le "gratuit" coûte très cher</p>
 
-      <h3>🎁 Introduction : Le cadeau empoisonné</h3>
+      <h3>🎁 Le piège du cadeau</h3>
       <p>
-        "C'est gratuit pour les étudiants !" Cette promesse alléchante cache une réalité 
-        économique bien rodée : le <strong>verrouillage éducatif</strong> (ou <em>educational 
-        lock-in</em>). Microsoft, Adobe, Autodesk et d'autres géants du logiciel offrent leurs 
-        produits gratuitement ou à prix réduit aux établissements scolaires, non par altruisme, 
-        mais comme investissement stratégique.
+        "C'est gratuit pour les étudiants !" On vous a déjà fait le coup, non ? 
+        Derrière cette offre généreuse se cache une stratégie bien huilée : 
+        le <strong>verrouillage éducatif</strong>. Microsoft, Adobe, Autodesk et compagnie 
+        offrent leurs produits aux écoles, mais c'est pas de la charité - c'est un 
+        investissement.
       </p>
       <p>
-        Le mécanisme est simple : habituer les jeunes à leurs outils pendant la formation, 
-        pour qu'ils les réclament ensuite dans le monde professionnel. Résultat : après les 
-        études, ces mêmes logiciels deviennent payants, souvent très chers, créant une 
-        dépendance difficile à rompre.
+        L'idée ? Vous habituer à leurs outils pendant vos études pour que vous les 
+        réclamiez ensuite au boulot. Et là, surprise : les licences deviennent pay antes, 
+        souvent très chères. Vous voilà pigé.
       </p>
       <blockquote>
-        "Give me a child until he is seven and I will show you the man" - proverbe adapté 
-        au marketing logiciel : "Formez un élève sur notre logiciel et il l'achètera toute sa vie"
+        "Formez un gamin sur notre logiciel et il l'achètera toute sa vie" - la vraie stratégie 
+        marketing derrière le "gratuit" éducatif
       </blockquote>
 
-      <h3>⚠️ Problématique : La dépendance structurelle</h3>
+      <h3>⚠️ Le problème de fond</h3>
       
-      <h4>1. Le modèle économique de la dépendance</h4>
+      <h4>1. Comment ça marche</h4>
       <p>
-        Les établissements scolaires français dépendent massivement de quelques acteurs :
+        Les bahuts français tournent massivement avec quelques acteurs :
       </p>
       <ul>
-        <li><strong>Microsoft 365 Education :</strong> Utilisé par plus de 85% des établissements 
-        français pour la messagerie, le stockage cloud et la bureautique. Gratuit pendant les études, 
-        il coûte ensuite 8,80€/mois/utilisateur (105€/an) pour les professionnels</li>
+        <li><strong>Microsoft 365 Education :</strong> 85% des établissements l'utilisent 
+        pour les mails, le cloud et la bureautique. Gratuit pendant les études, 
+        puis 105€/an/personne dans le monde du travail</li>
         
-        <li><strong>Adobe Creative Cloud :</strong> Standard de facto en design graphique, vidéo et 
-        photo. Licence étudiante à 20€/mois pendant les études, puis 60€/mois (720€/an) ensuite</li>
+        <li><strong>Adobe Creative Cloud :</strong> LA référence en design et vidéo. 
+        20€/mois étudiant, 720€/an après</li>
         
-        <li><strong>Autodesk (AutoCAD, Revit) :</strong> Incontournable en architecture et CAO. 
-        Gratuit pour les étudiants, mais licence professionnelle à 2 300€/an</li>
+        <li><strong>Autodesk (AutoCAD, Revit) :</strong> Incontournable en archi et CAO. 
+        Gratuit étudiant, 2 300€/an pro</li>
         
-        <li><strong>MATLAB :</strong> Outil de calcul scientifique. Version étudiante à 50€, 
-        licence industrielle à 2 150€</li>
+        <li><strong>MATLAB :</strong> L'outil de calcul scientifique. 50€ étudiant, 
+        2 150€ en entreprise</li>
       </ul>
       <p>
-        <strong>Le calcul est implacable :</strong> Un élève formé sur ces outils pendant 3 à 5 ans 
-        développe des automatismes cognitifs difficiles à changer. En entreprise, il demandera 
-        naturellement les mêmes logiciels, perpétuant le cycle.
+        <strong>Le truc :</strong> Après 3-5 ans d'utilisation, vos réflexes sont ancrés. 
+        En arrivant en entreprise, vous demandez naturellement les mêmes outils. Le cycle continue.
       </p>
 
-      <h4>2. Les habitudes comme prison dorée</h4>
+      <h4>2. La prison dorée</h4>
       <p>
-        Au-delà du coût, c'est la <strong>perte d'autonomie</strong> qui pose problème :
+        Au-delà du prix, c'est surtout la <strong>perte d'autonomie</strong> qui pose souci :
       </p>
       <ul>
-        <li><strong>Formats propriétaires :</strong> Les fichiers .docx, .psd, .dwg créent une 
-        dépendance aux logiciels qui les lisent. Impossible d'ouvrir un document Photoshop sans 
-        Photoshop (ou presque)</li>
+        <li><strong>Formats propriétaires :</strong> Les .docx, .psd, .dwg vous enferment 
+        dans le logiciel qui les lit. Pas de Photoshop ? Pas de fichier .psd (enfin presque)</li>
         
         <li><strong>Courbe d'apprentissage :</strong> Après des années sur Word, passer à LibreOffice 
-        demande un effort que peu acceptent de fournir. La résistance au changement est humaine</li>
+        demande un effort. Et on est humains, on aime pas changer nos habitudes</li>
         
         <li><strong>Interopérabilité limitée :</strong> Les éditeurs rendent volontairement difficile 
-        l'export vers des formats ouverts, renforçant le verrouillage</li>
+        l'export vers des formats ouverts. Vous êtes coincés</li>
         
-        <li><strong>Mises à jour forcées :</strong> Les abonnements imposent un rythme de mises à jour 
-        incessant, rendant parfois incompatibles les fichiers entre versions</li>
+        <li><strong>Mises à jour forcées :</strong> Les abonnements vous imposent des maj 
+        incessantes, parfois incompatibles avec vos anciens fichiers</li>
       </ul>
 
-      <h4>3. L'impact sur les budgets publics</h4>
+      <h4>3. Le coût réel</h4>
       <p>
-        <strong>Exemple concret :</strong> Un lycée de 1200 élèves équipé de Microsoft 365 et Office :
+        <strong>Exemple concret :</strong> Un lycée de 1200 élèves avec Microsoft 365 et Office :
       </p>
       <ul>
-        <li>Version éducation gratuite aujourd'hui (grâce au plan numérique)</li>
-        <li>Mais serveurs Exchange, SharePoint : 15 000€/an de licences serveur</li>
-        <li>Support technique Microsoft : 8 000€/an</li>
-        <li>Formation des enseignants : 5 000€/an</li>
-        <li><strong>Total : 28 000€/an</strong> pour un service "gratuit"</li>
+        <li>Version "gratuite" aujourd'hui</li>
+        <li>Mais serveurs Exchange, SharePoint : 15 000€/an</li>
+        <li>Support Microsoft : 8 000€/an</li>
+        <li>Formation des profs : 5 000€/an</li>
+        <li><strong>Total : 28 000€/an</strong> pour du "gratuit"</li>
       </ul>
       <p>
-        À l'échelle nationale, les licences Microsoft dans l'éducation représentent des centaines 
-        de millions d'euros annuels de dépense publique.
+        À l'échelle nationale, les licences Microsoft dans l'éducation, c'est des centaines 
+        de millions par an d'argent public.
       </p>
 
-      <h3>📰 Exemples et actualités révélatrices</h3>
+      <h3>📰 Exemples qui parlent</h3>
       
       <h4>Le reportage de France Inter (octobre 2025)</h4>
       <p>
         <a href="https://www.radiofrance.fr/franceinter/podcasts/le-grand-reportage-de-france-inter/le-grand-reportage-du-mardi-14-octobre-2025-4136495" target="_blank" rel="noopener">
-          Ce grand reportage
-        </a> suit le parcours d'une étudiante en graphisme : formée 3 ans sur la Creative Cloud 
-        Adobe, elle découvre à sa sortie d'études que continuer à l'utiliser lui coûterait 720€/an. 
-        Freelance débutante, elle ne peut se le permettre, mais ne sait pas utiliser les alternatives 
-        libres. Elle se retrouve coincée : pirater (illégal) ou payer (trop cher).
+          Ce reportage
+        </a> suit une étudiante en graphisme : 3 ans de formation sur Adobe Creative Cloud, 
+        et à la sortie, surprise, 720€/an pour continuer. En tant que freelance débutante, 
+        impossible. Mais elle connaît pas les alternatives libres. Piège : pirater (illégal) 
+        ou payer (trop cher).
       </p>
 
       <h4>Le cas OpenSankoré</h4>
       <p>
-        OpenSankoré était un logiciel libre de tableau blanc interactif (TBI) développé par l'université 
-        de Lausanne et soutenu par le Ministère français. Gratuit, performant, respectueux de la vie 
-        privée. Pourtant, il a été abandonné au profit de solutions propriétaires (SMART Notebook, 
-        Promethean) car les enseignants étaient déjà formés dessus et les fabricants de TBI imposaient 
-        leurs logiciels.
+        OpenSankoré était un logiciel libre pour tableaux blancs interactifs, développé par 
+        l'université de Lausanne avec le soutien du ministère. Gratuit, performant, respectueux 
+        de la vie privée. Mais abandonné au profit de SMART Notebook et Promethean, parce que 
+        les profs étaient déjà formés dessus et que les fabricants imposaient leurs logiciels.
       </p>
 
-      <h4>LibreOffice : l'alternative qui marche</h4>
+      <h4>LibreOffice : quand ça marche</h4>
       <p>
-        Des administrations entières ont basculé vers LibreOffice avec succès :
+        Des grosses structures ont basculé vers LibreOffice avec succès :
       </p>
       <ul>
-        <li><strong>Gendarmerie Nationale :</strong> 72 000 postes migrés depuis 2013, économie de 
-        2 millions d'euros par an</li>
-        <li><strong>Toulouse Métropole :</strong> Migration complète en 2011, économie estimée à 
+        <li><strong>Gendarmerie Nationale :</strong> 72 000 postes migrés depuis 2013, 
+        2 millions d'euros économisés par an</li>
+        <li><strong>Toulouse Métropole :</strong> Migration complète en 2011, 
         1 million d'euros sur 5 ans</li>
-        <li><strong>Municipalité de Munich :</strong> 15 000 postes sous Linux + LibreOffice (puis 
-        retour partiel à Windows suite au lobbying Microsoft, puis re-migration vers Linux en 2020)</li>
+        <li><strong>Munich :</strong> 15 000 postes sous Linux + LibreOffice (puis retour à Windows 
+        après lobbying Microsoft, puis re-migration vers Linux en 2020 - bataille politique)</li>
       </ul>
 
       <h3>✅ Solutions : Reprendre le contrôle</h3>
