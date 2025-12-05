@@ -223,24 +223,25 @@ const GRAVITE = 0.6;
 const FORCE_SAUT = -11;
 const VITESSE = 4;
 
-import capyStanding from '../assets/images/capyBros/capy_standing.png';
-import capyRunning from '../assets/images/capyBros/capy_running.png';
-import capyRunning2 from '../assets/images/capyBros/capy_running2.png';
-import capyJumping from '../assets/images/capyBros/capy_jumping.png';
-import capy4Pattes from '../assets/images/capyBros/capy_4_pattes.png';
-import groundImg from '../assets/images/capyBros/ground.png';
-import brickImg from '../assets/images/capyBros/brick.png';
-import enemyImg from '../assets/images/capyBros/enemy.png';
-import turtleImg from '../assets/images/capyBros/turtle.png';
-import turtle2Img from '../assets/images/capyBros/turtle2.png';
-import spikeImg from '../assets/images/capyBros/spike.png';
-import luckyBlockImg from '../assets/images/capyBros/lucky_block.png';
-import goodMushroomImg from '../assets/images/capyBros/good_mushroom.png';
-import usedBlockImg from '../assets/images/capyBros/used_block.png';
-import bgLayer from '../assets/images/capyBros/bg_layer.png';
-import castleImg from '../assets/images/capyBros/castle.png';
-import coinImg from '../assets/images/capyBros/coin.png';
-import bgMusicUrl from '../assets/music/funny-80x27s-arcade-game-outro-430593.mp3';
+// Assets depuis le dossier public
+const capyStanding = '/assets/images/capyBros/capy_standing.png';
+const capyRunning = '/assets/images/capyBros/capy_running.png';
+const capyRunning2 = '/assets/images/capyBros/capy_running2.png';
+const capyJumping = '/assets/images/capyBros/capy_jumping.png';
+const capy4Pattes = '/assets/images/capyBros/capy_4_pattes.png';
+const groundImg = '/assets/images/capyBros/ground.png';
+const brickImg = '/assets/images/capyBros/brick.png';
+const enemyImg = '/assets/images/capyBros/enemy.png';
+const turtleImg = '/assets/images/capyBros/turtle.png';
+const turtle2Img = '/assets/images/capyBros/turtle2.png';
+const spikeImg = '/assets/images/capyBros/spike.png';
+const luckyBlockImg = '/assets/images/capyBros/lucky_block.png';
+const goodMushroomImg = '/assets/images/capyBros/good_mushroom.png';
+const usedBlockImg = '/assets/images/capyBros/used_block.png';
+const bgLayer = '/assets/images/capyBros/bg_layer.png';
+const castleImg = '/assets/images/capyBros/castle.png';
+const coinImg = '/assets/images/capyBros/coin.png';
+const bgMusicUrl = '/assets/music/funny-80x27s-arcade-game-outro-430593.mp3';
 
 const RESSOURCES = {
     capyStanding,

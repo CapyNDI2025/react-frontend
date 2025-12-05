@@ -13,5 +13,12 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['@react-three/postprocessing']
-  }
+  },
+  proxy: {
+      '/deepseek': {
+        target: 'https://api.deepseek.com/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/deepseek/, ''),
+      },
+    },
 })
