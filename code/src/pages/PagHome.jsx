@@ -490,13 +490,13 @@ const PagHome = () => {
 
         {/* Mini-jeu */}
         <MiniGameBlock variants={blockVariants} whileHover={hoverVariants}>
-          <BlockLink to="/minigame">
+          <ExternalBlockLink href="/mario" target="_blank" rel="noopener noreferrer">
             <IconWrapper whileHover={iconHover}>
               <RiSwordLine />
             </IconWrapper>
             <BlockTitle>Mini-jeu</BlockTitle>
             <BlockSubtitle>Jouez !</BlockSubtitle>
-          </BlockLink>
+          </ExternalBlockLink>
         </MiniGameBlock>
 
         {/* Crédits */}
