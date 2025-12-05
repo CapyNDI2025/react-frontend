@@ -5,6 +5,7 @@ import PagCounters from '../pages/PagCounters'
 import PagCubes from '../pages/PagCubes'
 import PagCharacter from '../pages/PagCharacter'
 import PagEarth from '../pages/PagEarth'
+import MarioCapyGame from '../components/MarioCapyGame'
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/cube" element={<PagCubes />} />
       <Route path="/character" element={<PagCharacter />} />
       <Route path="/earth" element={<PagEarth />} />
+      <Route path="/mario" element={<MarioCapyGame />} />
       <Route path="*" element={<div>404</div>} />
     </Routes>
   )

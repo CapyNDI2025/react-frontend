@@ -1,17 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
-import store from './lib/store/store.js'
-import App from './pages/App'
-import { LanguageProvider } from './i18n/LanguageContext'
-import './styles/globals.css'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './routes/routes'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-
-root.render(
-  <Provider store={store}>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
-  </Provider>
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    </React.StrictMode>,
 )
