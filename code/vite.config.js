@@ -15,15 +15,15 @@ export default defineConfig({
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'require-corp',
     },
-  },
-  optimizeDeps: {
-    include: ['@react-three/postprocessing']
-  },
-  proxy: {
+    proxy: {
       '/deepseek': {
         target: 'https://api.deepseek.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/deepseek/, ''),
       },
     },
+  },
+  optimizeDeps: {
+    include: ['@react-three/postprocessing']
+  },
 })
