@@ -5,6 +5,7 @@ import PagGodot from '../pages/PagGodot'
 import PagAbout from '../pages/PagAbout'
 import PagCredits from '../pages/PagCredits'
 import DocumentsTableView from '../modules/documentsView/DocumentsTableView'
+import PagChatBot from '../pages/PagChatBot'
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,8 @@ const AppRoutes = () => {
       <Route path="/credits" element={<PagCredits />} />
       <Route path="*" element={<div>404</div>} />
       <Route path="/resources" element={ <DocumentsTableView />} />
+      <Route path="/chatbot" element={<PagChatBot />} />
+
     </Routes>
   )
 }
