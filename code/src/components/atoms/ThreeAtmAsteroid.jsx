@@ -1,21 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { MeshDistortMaterial, Sparkles, Float } from '@react-three/drei';
 import { useChatStore } from '../../lib/store/chatStore';
-import * as THREE from 'three';
 
 const ThreeAtmAsteroid = () => {
   const group = useRef();
   const [active, setActive] = useState(false);
   
-  // Store actions
   const addMessage = useChatStore(state => state.addMessage);
   const setEmotion = useChatStore(state => state.setEmotion);
 
-  // Random start time: Start between 5s and 10s for faster testing
   const nextPass = useRef(Math.random() * 5 + 5); 
 
   useFrame((state, delta) => {
-    // Timer logic
     if (!active) {
       nextPass.current -= delta;
       if (nextPass.current <= 0) {
@@ -24,17 +21,14 @@ const ThreeAtmAsteroid = () => {
     } else {
       if (!group.current) return;
 
-      // Move asteroid
-      group.current.position.x += delta * 3; // Slightly slower to be easier to click
+      group.current.position.x += delta * 3;
       
-      // Rotate asteroid
       group.current.rotation.x += delta * 0.5;
       group.current.rotation.y += delta * 0.3;
 
-      // Check if out of bounds (Right side)
       if (group.current.position.x > 15) {
         setActive(false);
-        nextPass.current = Math.random() * 30 + 15; // Next pass in 15-45s
+        nextPass.current = Math.random() * 30 + 15;
       }
     }
   });
@@ -47,13 +41,8 @@ const ThreeAtmAsteroid = () => {
       content: "🇫🇷 COCORICO ! 🇫🇷\n\nEnchanté ! Je suis Jean-Michel Abysse, une IA fièrement développée avec amour (et du code). J'ai une passion secrète pour la France : ses paysages, sa gastronomie, et bien sûr, son esprit révolutionnaire ! 🥖🍷🧀\n\nVive la République, vive le Code et vive la France !"
     });
   };
-
-  // We render the group always but hide it or move it when inactive?
-  // Better to conditionally render or just move it far away.
-  // If we conditionally render the group, the ref might be lost.
-  // Let's just position it far away when inactive.
   
-  const initialPos = [-15, 2, -5]; // Start left, slightly up, background
+  const initialPos = [-15, 2, -5];
 
   if (!active) return null;
 
@@ -66,36 +55,52 @@ const ThreeAtmAsteroid = () => {
       onPointerOver={() => { document.body.style.cursor = 'pointer' }}
       onPointerOut={() => { document.body.style.cursor = 'default' }}
     >
-      {/* Asteroid Body */}
-      <mesh>
-        <dodecahedronGeometry args={[1, 0]} />
-        <meshStandardMaterial color="#666" roughness={0.9} />
-      </mesh>
+      <Float speed={5} rotationIntensity={2} floatIntensity={1}>
+        <mesh>
+          <icosahedronGeometry args={[1, 1]} />
+          <MeshDistortMaterial 
+            color="#8B7355" 
+            roughness={0.6}
+            metalness={0.4}
+            distort={0.3}
+            speed={2}
+            radius={1}
+          />
+        </mesh>
 
-      {/* Flag Pole */}
-      <mesh position={[0, 0.8, 0]} rotation={[0, 0, -0.2]}>
-        <cylinderGeometry args={[0.03, 0.03, 2]} />
-        <meshStandardMaterial color="#888" metalness={0.8} />
-      </mesh>
+        <mesh position={[0.7, 0.3, 0.3]} scale={0.25}>
+          <dodecahedronGeometry args={[1, 0]} />
+          <meshStandardMaterial color="#5C4033" />
+        </mesh>
+        <mesh position={[-0.6, -0.4, 0.5]} scale={0.2}>
+          <dodecahedronGeometry args={[1, 0]} />
+          <meshStandardMaterial color="#5C4033" />
+        </mesh>
+        <mesh position={[0.2, 0.8, -0.3]} scale={0.15}>
+          <dodecahedronGeometry args={[1, 0]} />
+          <meshStandardMaterial color="#5C4033" />
+        </mesh>
 
-      {/* Flag (Blue White Red) */}
-      <group position={[0.5, 1.5, 0]} rotation={[0, 0, -0.2]}>
-        {/* Blue */}
-        <mesh position={[-0.34, 0, 0]}>
-          <boxGeometry args={[0.33, 0.6, 0.02]} />
-          <meshStandardMaterial color="#0055A4" />
+        <mesh position={[0, 0.8, 0]} rotation={[0, 0, -0.2]}>
+          <cylinderGeometry args={[0.04, 0.04, 2.2]} />
+          <meshStandardMaterial color="#C0C0C0" metalness={0.9} roughness={0.2} />
         </mesh>
-        {/* White */}
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[0.33, 0.6, 0.02]} />
-          <meshStandardMaterial color="#FFFFFF" />
-        </mesh>
-        {/* Red */}
-        <mesh position={[0.34, 0, 0]}>
-          <boxGeometry args={[0.33, 0.6, 0.02]} />
-          <meshStandardMaterial color="#EF4135" />
-        </mesh>
-      </group>
+
+        <group position={[0.5, 1.5, 0]} rotation={[0, 0, -0.2]}>
+          <mesh position={[-0.34, 0, 0]}>
+            <boxGeometry args={[0.33, 0.6, 0.05]} />
+            <meshStandardMaterial color="#0055A4" />
+          </mesh>
+          <mesh position={[0, 0, 0]}>
+            <boxGeometry args={[0.33, 0.6, 0.05]} />
+            <meshStandardMaterial color="#FFFFFF" />
+          </mesh>
+          <mesh position={[0.34, 0, 0]}>
+            <boxGeometry args={[0.33, 0.6, 0.05]} />
+            <meshStandardMaterial color="#EF4135" />
+          </mesh>
+        </group>
+      </Float>
     </group>
   );
 };

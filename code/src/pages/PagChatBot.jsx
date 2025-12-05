@@ -5,6 +5,9 @@ import { OrbitControls, Stars, Environment } from '@react-three/drei';
 import ThreeAtmAvatar from '../components/atoms/ThreeAtmAvatar';
 import ThreeAtmAsteroid from '../components/atoms/ThreeAtmAsteroid';
 import OrgChatInterface from '../components/organisms/OrgChatInterface';
+import OrgDebateInterface from '../components/organisms/OrgDebateInterface';
+import { useChatStore } from '../lib/store/chatStore';
+import { AudioProvider } from '../contexts/AudioContext';
 
 const PageContainer = styled.div`
   width: 100vw;
@@ -14,19 +17,11 @@ const PageContainer = styled.div`
   overflow: hidden;
 `;
 
-// Component to shift the camera view so the center (0,0,0) appears on the left
 const CameraLogger = () => {
   const { camera, size } = useThree();
   
   useEffect(() => {
-    // Shift the view to the right, so the object appears on the left
-    // We want the center to be at roughly 25% of the screen width instead of 50%
-    // So we shift the window by -25% of the width?
-    // setViewOffset(fullWidth, fullHeight, x, y, width, height)
-    // A negative x offset shifts the view window left, moving the object right.
-    // A positive x offset shifts the view window right, moving the object left.
-    
-    const offset = size.width * 0.25; // Shift by 25%
+    const offset = size.width * 0.25;
     camera.setViewOffset(size.width, size.height, offset, 0, size.width, size.height);
     camera.updateProjectionMatrix();
 
@@ -39,39 +34,53 @@ const CameraLogger = () => {
 };
 
 const PagChatBot = () => {
+  const isDebateMode = useChatStore((state) => state.isDebateMode);
+
+  useEffect(() => {
+    console.log(
+      "%cArrêtez de me déshabiller du regard. C'est gênant. - Jean-Michel.",
+      "color: #ff4444; font-size: 16px; font-weight: bold; background: #222; padding: 8px; border-radius: 4px;"
+    );
+  }, []);
+
   return (
-    <PageContainer>
-      {/* 3D Background Layer */}
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-        <CameraLogger />
-        <color attach="background" args={['#1a1a2e']} />
-        
-        <Suspense fallback={null}>
-          <Environment preset="city" />
-          <Stars radius={100} depth={50} count={5000} factor={6} saturation={0} fade speed={3} />
+    <AudioProvider>
+      <PageContainer>
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+          {!isDebateMode && <CameraLogger />}
+          <color attach="background" args={['#1a1a2e']} />
           
-          <ambientLight intensity={0.5} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-          
-          {/* Planet centered at X=0 for correct rotation, but visually shifted by CameraLogger */}
-          <ThreeAtmAvatar position={[0, -0.5, 0]} />
-          
-          {/* Easter Egg Asteroid */}
-          <ThreeAtmAsteroid />
-          
-        </Suspense>
+          <Suspense fallback={null}>
+            <Environment preset="city" />
+            <Stars radius={100} depth={50} count={5000} factor={6} saturation={0} fade speed={3} />
+            
+            <ambientLight intensity={0.5} />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+            
+            {isDebateMode ? (
+              <>
+                <ThreeAtmAvatar position={[-2.5, -0.5, 0]} personalityOverride="abysse" />
+                <ThreeAtmAvatar position={[2.5, -0.5, 0]} personalityOverride="nullpointer" />
+              </>
+            ) : (
+              <ThreeAtmAvatar position={[0, -0.5, 0]} />
+            )}
+            
+            <ThreeAtmAsteroid />
+            
+          </Suspense>
 
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false} 
-          minPolarAngle={Math.PI / 2.5} 
-          maxPolarAngle={Math.PI / 1.8}
-        />
-      </Canvas>
+          <OrbitControls 
+            enableZoom={false} 
+            enablePan={false} 
+            minPolarAngle={Math.PI / 2.5} 
+            maxPolarAngle={Math.PI / 1.8}
+          />
+        </Canvas>
 
-      {/* UI Overlay Layer */}
-      <OrgChatInterface />
-    </PageContainer>
+        {isDebateMode ? <OrgDebateInterface /> : <OrgChatInterface />}
+      </PageContainer>
+    </AudioProvider>
   );
 };
 

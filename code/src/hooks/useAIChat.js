@@ -1,24 +1,108 @@
 import { useState, useEffect, useRef } from 'react';
 import { useChatStore } from '../lib/store/chatStore';
+import { useAudio } from '../contexts/AudioContext';
 import OpenAI from 'openai';
 
 export const useAIChat = () => {
-  const { messages, addMessage, setStatus, status, initChat, setEmotion, emotion } = useChatStore();
+  const { 
+    messages, 
+    addMessage, 
+    clearMessages,
+    updateLastMessage, 
+    setStatus, 
+    status, 
+    initChat, 
+    setEmotion, 
+    emotion, 
+    setVisualItems,
+    currentPersonality,
+    setPersonality,
+    personalities,
+    isDebateMode,
+    isDebatePaused,
+    setDebateMode,
+    setDebatePaused
+  } = useChatStore();
+  
+  // Use Audio Context safely (it might be null if used outside provider, but here it should be fine)
+  const audio = useAudio();
+  const playClick = audio ? audio.playClick : () => {};
+
   const [inputValue, setInputValue] = useState('');
   const [speakingIndex, setSpeakingIndex] = useState(null);
   const abortControllerRef = useRef(null);
+  const debateTimeoutRef = useRef(null);
 
-  // Initialiser le chat avec le System Prompt au montage
   useEffect(() => {
     initChat();
   }, [initChat]);
+
+  useEffect(() => {
+    if (!isDebateMode || isDebatePaused) {
+      if (debateTimeoutRef.current) clearTimeout(debateTimeoutRef.current);
+      return;
+    }
+
+    if (status === 'idle' && messages.length > 0) {
+      const lastMsg = messages[messages.length - 1];
+      
+      if (lastMsg.role === 'assistant') {
+        debateTimeoutRef.current = setTimeout(() => {
+          triggerDebateTurn(lastMsg.content);
+        }, 2000);
+      }
+    }
+
+    return () => {
+      if (debateTimeoutRef.current) clearTimeout(debateTimeoutRef.current);
+    };
+  }, [isDebateMode, isDebatePaused, status, messages]);
+  const triggerDebateTurn = (lastContent) => {
+    const nextPersonality = currentPersonality === 'abysse' ? 'nullpointer' : 'abysse';
+    setPersonality(nextPersonality);
+
+    const prompt = `[RÉPONSE À L'AUTRE IA] : "${lastContent}". Réponds-lui selon ton caractère.`;
+    
+    handleSendMessage(null, prompt);
+  };
+
+  const toggleDebateMode = () => {
+    const newMode = !isDebateMode;
+    
+    if (newMode) {
+      clearMessages();
+      setDebateMode(true);
+      
+      const startPrompt = "Lançons un débat. Sujet : 'La conscience des grille-pains'. Commence !";
+      const systemPrompt = personalities[currentPersonality].systemPrompt;
+      const newUserMessage = { role: 'user', content: startPrompt };
+      
+      addMessage(newUserMessage);
+      callRealLLM([systemPrompt, newUserMessage]);
+    } else {
+      setDebateMode(false);
+      if (debateTimeoutRef.current) clearTimeout(debateTimeoutRef.current);
+      stopGeneration();
+      clearMessages();
+    }
+  };
+
+  const pauseDebate = () => {
+    setDebatePaused(true);
+    if (debateTimeoutRef.current) clearTimeout(debateTimeoutRef.current);
+    stopGeneration();
+  };
+
+  const resumeDebate = () => {
+    setDebatePaused(false);
+    // Trigger will happen automatically via useEffect if status is idle
+  };
 
   const stopGeneration = () => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
       abortControllerRef.current = null;
     }
-    // On arrête uniquement la génération de texte (thinking), pas la parole (speaking)
     if (status === 'thinking') {
       setStatus('idle');
     }
@@ -27,20 +111,16 @@ export const useAIChat = () => {
   const speakText = (text, index) => {
     if (!window.speechSynthesis) return;
     
-    // Si on clique sur le message en cours de lecture, on arrête tout
     if (speakingIndex === index) {
       window.speechSynthesis.cancel();
       setStatus('idle');
       setSpeakingIndex(null);
       return;
     }
-
-    // Stop any current speech
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'fr-FR'; 
-    // On peut ajuster la voix ici si besoin
     
     utterance.onstart = () => {
       setStatus('speaking');
@@ -61,7 +141,6 @@ export const useAIChat = () => {
   const callRealLLM = async (messagesHistory) => {
     setStatus('thinking');
     
-    // Cancel any previous request
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
@@ -86,38 +165,80 @@ export const useAIChat = () => {
     });
 
     try {
-      // DeepSeek utilise le format compatible OpenAI
       const apiMessages = messagesHistory.map(msg => ({
         role: msg.role,
         content: msg.content
       }));
 
-      const completion = await openai.chat.completions.create({
+      const stream = await openai.chat.completions.create({
         messages: apiMessages,
         model: "deepseek-chat",
         temperature: 1.3,
+        stream: true,
       }, { signal: abortControllerRef.current.signal });
 
-      // Extraction de la réponse DeepSeek
-      const rawContent = completion.choices[0].message.content;
-      
-      let aiContent = rawContent;
-      let aiEmotion = 'neutral';
+      let fullContent = '';
+      addMessage({ role: 'assistant', content: '' });
 
-      try {
-        // Nettoyage du markdown JSON si présent (Gemini aime bien mettre ```json ... ```)
-        const cleanJson = rawContent.replace(/```json/g, '').replace(/```/g, '').trim();
-        const parsed = JSON.parse(cleanJson);
+      for await (const chunk of stream) {
+        const content = chunk.choices[0]?.delta?.content || '';
+        fullContent += content;
         
-        if (parsed.content) aiContent = parsed.content;
-        if (parsed.emotion) aiEmotion = parsed.emotion;
-      } catch (e) {
-        console.warn("L'IA n'a pas répondu en JSON valide, fallback sur texte brut.", e);
-        // On garde le texte brut si le parsing échoue
+        const trimmed = fullContent.trim();
+        if (trimmed.startsWith('{')) {
+          const match = fullContent.match(/"content"\s*:\s*"((?:[^"\\]|\\.)*)/);
+          if (match) {
+            try {
+              const currentText = JSON.parse(`"${match[1]}"`); 
+              updateLastMessage(currentText);
+            } catch (e) {
+              updateLastMessage(match[1]);
+            }
+          }
+        } else {
+          const displayText = fullContent.replace(/^```json\s*/, '').replace(/^```\s*/, '');
+          updateLastMessage(displayText);
+        }
       }
 
+      let aiEmotion = 'neutral';
+      let finalContent = fullContent;
+
+      try {
+        const jsonMatch = fullContent.match(/\{[\s\S]*\}/);
+        
+        if (jsonMatch) {
+          const jsonString = jsonMatch[0];
+          const parsed = JSON.parse(jsonString);
+          
+          if (parsed.emotion) aiEmotion = parsed.emotion;
+          if (parsed.content) finalContent = parsed.content;
+          
+          if (parsed.data && parsed.data.items) {
+             setVisualItems(parsed.data.items);
+          } else {
+             setVisualItems([]);
+          }
+        } else {
+          finalContent = fullContent.replace(/^```json\s*/, '').replace(/^```\s*/, '').replace(/```$/, '');
+        }
+
+      } catch (e) {
+        console.warn("Parsing JSON échoué, tentative de récupération...", e);
+        if (fullContent.trim().startsWith('{')) {
+           const match = fullContent.match(/"content"\s*:\s*"((?:[^"\\]|\\.)*)"/);
+           if (match) {
+             try {
+                finalContent = JSON.parse(`"${match[1]}"`);
+             } catch (err) {
+                finalContent = match[1];
+             }
+           }
+        }
+      }
+
+      updateLastMessage(finalContent);
       setEmotion(aiEmotion);
-      addMessage({ role: 'assistant', content: aiContent });
       setStatus('idle');
 
     } catch (error) {
@@ -135,19 +256,40 @@ export const useAIChat = () => {
     }
   };
 
-  const handleSendMessage = async (e) => {
-    e.preventDefault();
-    if (!inputValue.trim() || status === 'thinking') return;
+  const handleSendMessage = async (e, overridePrompt = null) => {
+    if (e) e.preventDefault();
+    
+    const prompt = overridePrompt || inputValue;
+    if (!prompt.trim()) return;
 
-    const userText = inputValue;
+    // Play Click Sound
+    playClick(currentPersonality);
+
+    const newUserMessage = { role: 'user', content: prompt };
+    addMessage(newUserMessage);
     setInputValue('');
     
-    const newUserMessage = { role: 'user', content: userText };
-    addMessage(newUserMessage);
-    
-        // On envoie tout l'historique + le nouveau message à l'API
+    // Call LLM
     await callRealLLM([...messages, newUserMessage]);
   };
 
-  return { messages, status, inputValue, setInputValue, handleSendMessage, stopGeneration, emotion, speakText, speakingIndex };
+  return { 
+    messages, 
+    status, 
+    inputValue, 
+    setInputValue, 
+    handleSendMessage, 
+    stopGeneration, 
+    emotion, 
+    speakText, 
+    speakingIndex,
+    currentPersonality,
+    setPersonality,
+    personalities,
+    isDebateMode,
+    isDebatePaused,
+    toggleDebateMode,
+    pauseDebate,
+    resumeDebate
+  };
 };
