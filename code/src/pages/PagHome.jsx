@@ -479,13 +479,13 @@ const PagHome = () => {
 
         {/* Dépendances */}
         <DependenciesBlock variants={blockVariants} whileHover={hoverVariants}>
-          <BlockLink to="/dependencies">
+          <ExternalBlockLink href="https://github.com/CapyNDI2025/extentionYT" target="_blank" rel="noopener noreferrer">
             <IconWrapper whileHover={iconHover}>
               <RiBarChartBoxLine />
             </IconWrapper>
             <BlockTitle>Réduire</BlockTitle>
             <BlockSubtitle>Dépendances numériques</BlockSubtitle>
-          </BlockLink>
+          </ExternalBlockLink>
         </DependenciesBlock>
 
         {/* Mini-jeu */}
