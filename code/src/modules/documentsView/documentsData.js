@@ -423,7 +423,7 @@ export const documentsData = [
     `
   },
   {
-    id: 3,
+    id: 4,
     title: "Données & vie privée",
     summary: "Souveraineté numérique et protection des données",
     icon: "🛡️",
@@ -717,7 +717,7 @@ export const documentsData = [
     `
   },
   {
-    id: 4,
+    id: 3,
     title: "Accompagnement & formation",
     summary: "Former pour une transition numérique réussie",
     icon: "🎓",
